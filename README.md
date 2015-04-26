@@ -82,81 +82,78 @@ example:
 > 
 > *If we wanted to codify such a set of relationships, hardcoded, it might look something*
 > *like this:*
-> 
-> ~~~~javascript
-> 
-> var House 	= {
-> 	kitchen		: {
-> 		stove		: {
-> 
-> 		}
-> 	}
-> }
-> 
-> //Similarly...
-> var Person = {
-> 	fingers: [
-> 		1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-> 	]
-> }
-> 
-> //The person has 10 fingers!
-> 
-> ~~~~
-> 
+
+~~~~javascript
+var House 	= {
+	kitchen		: {
+		stove		: {
+ 
+ 		}
+ 	}
+}
+ 
+//Similarly...
+var Person = {
+ 	fingers: [
+ 		1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+ 	]
+}
+ 
+//The person has 10 fingers!
+ 
+~~~~
+
 > *A more extensible version of the same code might be something like this:*
-> 
-> ~~~~javascript
-> 
-> var House 	= {
-> 	rooms		: [
-> 		{
-> 			name: "bedroom",
-> 			contains: [
-> 				"bed",
-> 				"bedside table",
-> 				"lamp",
-> 				"book"
-> 			]
-> 		},
-> 		{
-> 			name: "kitchen",
-> 			contains: [
-> 				"stove",
-> 				"fridge",
-> 				"oven",
-> 				"dishwasher"
-> 			]
-> 		}
-> 	],
-> 	size: {
-> 		measurement: 1200,
-> 		unit: "square feet"
-> 	}
-> }
-> 
-> //And for a person...
-> var Person 	= {
-> 	parts 		: [
-> 		{
-> 			name: "hand",
-> 			count: 2,
-> 			children: [
-> 				{
-> 					name: "fingers",
-> 					count: 5
-> 				}
-> 			]
-> 		},
-> 		{
-> 			name: "legs",
-> 			count: 2,
-> 			children: []
-> 		},
-> 	]
-> }
-> 
-> ~~~~
+ 
+~~~~javascript
+var House 	= {
+ 	rooms		: [
+ 		{
+ 			name: "bedroom",
+ 			contains: [
+ 				"bed",
+ 				"bedside table",
+ 				"lamp",
+ 				"book"
+ 			]
+ 		},
+ 		{
+ 			name: "kitchen",
+ 			contains: [
+ 				"stove",
+ 				"fridge",
+ 				"oven",
+ 				"dishwasher"
+ 			]
+ 		}
+ 	],
+ 	size: {
+ 		measurement: 1200,
+ 		unit: "square feet"
+ 	}
+}
+ 
+//And for a person...
+var Person 	= {
+ 	parts 		: [
+ 		{
+ 			name: "hand",
+ 			count: 2,
+ 			children: [
+ 				{
+ 					name: "fingers",
+ 					count: 5
+ 				}
+ 			]
+ 		},
+ 		{
+ 			name: "legs",
+ 			count: 2,
+ 			children: []
+ 		},
+ 	]
+} 
+~~~~
 
 2. **Assignment & Functions:** After the var, we name our variable: Interactive. This is going 
 to be the core variable where the entire interactive lives. Using this variable, we can 
