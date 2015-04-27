@@ -20,7 +20,7 @@ and almost nothing like R (which occupies the functional programming paradigm.)
 In the first comment in the file (marked by the /* ... */), I've defined the parameters 
 I'll be passing as an argument to the prototype. Note that comments in JavaScript are
 inactive; it is not like Python where document definitions (using the """ comment """ 
-format) actually have a functional purpose. The purpose of the \@params { } syntax is 
+format) actually have a functional purpose. The purpose of the @ params { } syntax is 
 essentially to indicate the following:
 
 * The prototype accepts one argument, an object (like a Python dictionary), indicated by
