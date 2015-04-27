@@ -1,3 +1,10 @@
+/*
+Project: AMIA Student Design Challenge
+Team Institution: Oregon Health & Science University
+Client: MyApnea.org
+File: interactive.js
+*/
+
 (function () {
 
 	var Interactive = function (config) {
@@ -7,7 +14,7 @@
 	/*
 	Interactive Prototype
 
-	@params: {
+	@ params: {
 		parent 		(String)	: the parent HTML element (where the interactive lives on the web page),
 		element 	(String) 	: the main HTML element for the interactive feature
 		navigation 	(String) 	: the navigation HTML element

@@ -1,6 +1,53 @@
 # **Documentation version 1.0**
+
+---
+
+## **Foreword**
+
+This is not exactly a traditional documentation, but rather an explanation of how this
+project is structured along with some musings as to how each of its parts functions. 
+
+The core thing to remember is the purpose of each file. There are a lot of analogies 
+to explain how HTML, CSS, & JavaScript come together to form a website or the like,
+but I feel the most intuitive to me uses the human body:
+
+**HTML:** The Bones. HTML (hypertext mark-up language) gives the a website its structure
+and serves as the foundation that CSS and JavaScript build on.
+
+**CSS:** The Skin. CSS (cascading style sheets) gives a website its look and feel. This 
+is what prevents your really cool website from looking like one of those ugly things
+from the late 90's. Yuck. 
+
+**JS:** The Muscle. JavaScript is the programming. It works by picking up events, such 
+as clicking, hovering onto, or hovering outside of an HTML element. Once an event is 
+bound to an HTML element, it can trigger a function. Generally, a function can manipulate
+*almost* anything in the HTML or CSS of the webpage.
+
+**A Quick Note on Functions**
+What do these functions do? This may seem like a silly question, but JavaScript functions
+can do a very diverse number of things. Here are some examples in the form of common use 
+cases:
+
+* Send data entered into a form on a web page to a server.
+
+* Parse data using a regex and then alter a web pages CSS to indicate whether the data enter
+-ed is valid. For example, make a form field green if your password and re-entered passwords 
+match and contain both a number and a symbol.
+
+* Change CSS and alter the entire look and feel of a website. Yes! If you wanted to make 
+the MyApnea.org website flash back and forth from its day to night looks, you could do that
+with a JavaScript timer.
+
+* Animate things! Although these days we generally use CSS to do animations you can, in
+fact, use JavaScript to do this.
+
+Combine many functions, and you can stream video (like YouTube) and music (like Soundcloud), 
+create an email client application (like Gmail), or even visualize live data streams on a 
+network.
+
 ---
 ## **index.html**
+
 
 
 ---
@@ -27,7 +74,8 @@ syntax is essentially to indicate the following:
 the curly braces {}
 
 * Inside this object is the default data we'll be using to initialize the Interactive
-prototype
+prototype. Note that in describing a function or prototype we call fields of this data
+parameters, but when we call a function or instatiate a prototype we call them arguments. 
 
 * Each key in the object is represented by the actual key name, the data type needed, and
 a short description of what it is
