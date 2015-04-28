@@ -60,7 +60,7 @@ interface.
 ---
 ## **interactive.js**
 
-### **A Walk Through A JS File**
+### **A Walk Through A JS File (using interactive.js)**
 
 JavaScript is a prototype based language. Although there are some minor differences,
 for our purpose, a prototype is a class; similar to those in Java or Python. JavaScript
@@ -104,12 +104,12 @@ This small code block is one of the most important pieces of code in the interac
 illustrate a few core concepts. I'll walk you through what each part does:
 
 
-1. **Scope:** The 'var' keyword defines a local scope. In Python you control scope by indent
--ing code blocks, but this is not the case in JavaScript. JavaScript is (for the most part) 
-whitespace agnostic and scope is instead controlled by the 'var' keyword. What the 'var' 
-keyword is saying is this: 'whatever variable name comes after me is in the child scope of 
-the current scope.' I realize this may be confusing, but it's very important, so here is an 
-example: 
+1. **Scope:** The 'var' keyword defines a variable in a *local scope*. In Python you control 
+scope by indenting code blocks, but this is not the case in JavaScript. JavaScript is (for 
+the most part) whitespace agnostic and instead scope is controlled by the 'var' keyword. What
+the 'var' keyword is saying is this: 'whatever new variable name comes after me is in the 
+child scope of the current scope.' I realize this may be confusing, but it's very important, 
+so here is an example: 
 
 > *Let's say we have a house and that this house, like most houses, has a kitchen. Further,*
 > *this kitchen (among many things) has a stove. In this house also lives a person and this*
@@ -200,7 +200,7 @@ var Person 	= {
  			]
  		},
  		{
- 			name: "legs",
+ 			name: "leg",
  			count: 2,
  			children: []
  		},
@@ -209,7 +209,7 @@ var Person 	= {
 ~~~~
 
 > Did you catch it? You may be asking yourself, where did you define the 'global scope'. Well,
-> to answer you, you astute observer, it need not be defined. Traditionally in JavaScript, the
+> to answer, you astute observer, it need not be defined. Traditionally in JavaScript, the
 > global scope is the browser's window. When we create a House or Person object in the global
 > scope, it automatically attaches itself to the window object. So, using the example above, 
 > if you wanted to call the Person object in the browsers JavaScript console, you could type 
@@ -219,8 +219,27 @@ var Person 	= {
 // Calling the Person variable would print the object assigned to it to the console
 Person
 
+\> *outputs the Person object*
+
 // The following is exactly the same command, just more explicit
 window.Person
+
+\> *outputs the Person object*
+
+// Let's say we want to figure out what parts this person has, this is how we may
+// access the more extensible version of the Person object
+for (var i = 0; i < Person.parts.length; i++) {
+	console.log("A person has " + Person.parts[i].count + " " + Person.parts[i].name + "s!");
+}
+
+\> "A person has 2 hands!"
+\> "A person has 2 legs!"
+
+// The above section of code will look familiar if you've worked with Java;
+// note that the console.log() function is similar to the printf() function
+// in Java or C. The console object has other functions too, such as
+// console.debug() and console.trace(), but they're really just different
+// flavors of a similar function.
 ~~~~
 
 2. **Assignment & Functions:** After the var, we name our variable: Interactive. This is going 
@@ -241,7 +260,7 @@ Interactive prototype.
 
 4. **Semicolons:** One of the most confusing aspects to beginners is often where to put a 
 semicolon. It's actually fairly simple. There are two main rules, and the block of code 
-illustrated both:
+illustrates them both:
 
 * After an assignment, as in:
 
@@ -256,5 +275,9 @@ var Interactive = function (config) { ... };
 // A function call
 this.init(config);
 ~~~~
+
+### **Python to JavaScript Syntax Cheat Sheet**
+
+
 
 ---
