@@ -9,16 +9,17 @@ project is structured along with some musings as to how each of its parts functi
 
 The core thing to remember is the purpose of each file. There are a lot of analogies 
 to explain how HTML, CSS, & JavaScript come together to form a website or the like,
-but I feel the most intuitive to me uses the human body:
+but I feel the most intuitive uses the human body:
 
-**HTML:** The Bones. HTML (hypertext mark-up language) gives the a website its structure
-and serves as the foundation that CSS and JavaScript build on.
+**HTML:** *The Bones*. HTML (hypertext mark-up language) gives the a website its structure.
+It serves as the foundation that CSS and JavasScript build on and is a cousin of XML. Before
+there was CSS & JavaScript there was HTML. 
 
-**CSS:** The Skin. CSS (cascading style sheets) gives a website its look and feel. This 
+**CSS:** *The Skin*. CSS (cascading style sheets) gives a website its look and feel. This 
 is what prevents your really cool website from looking like one of those ugly things
 from the late 90's. Yuck. 
 
-**JS:** The Muscle. JavaScript is the programming. It works by picking up events, such 
+**JS:** *The Muscle*. JavaScript is the programming. It works by picking up events, such 
 as clicking, hovering onto, or hovering outside of an HTML element. Once an event is 
 bound to an HTML element, it can trigger a function. Generally, a function can manipulate
 *almost* anything in the HTML or CSS of the webpage.
