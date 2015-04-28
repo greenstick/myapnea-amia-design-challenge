@@ -20,14 +20,15 @@ is what prevents your really cool website from looking like one of those ugly th
 from the late 90's. Yuck. 
 
 **JS:** *The Muscle*. JavaScript is the programming. It works by picking up events, such 
-as clicking, hovering onto, or hovering outside of an HTML element. Once an event is 
+as clicking on, hovering on to, or hovering off of an HTML element. Once an event is 
 bound to an HTML element, it can trigger a function. Generally, a function can manipulate
 *almost* anything in the HTML or CSS of the webpage.
 
 **A Quick Note on Functions**
 What do these functions do? This may seem like a silly question, but JavaScript functions
-can do a very diverse number of things. Here are some examples in the form of common use 
-cases:
+can do a very diverse number of things that can't easily be done in Python and are flat out
+impossible in R (unless your using Shiney, which uses JavaScript to do its front-end bidding.)
+Here are some examples in the form of common use cases:
 
 * Send data entered into a form on a web page to a server.
 
@@ -42,9 +43,10 @@ with a JavaScript timer.
 * Animate things! Although these days we generally use CSS to do animations you can, in
 fact, use JavaScript to do this.
 
-Combine many functions, and you can stream video (like YouTube) and music (like Soundcloud), 
+Combine many functions, and you can stream videos (like YouTube) and music (like Soundcloud), 
 create an email client application (like Gmail), or even visualize live data streams on a 
-network.
+network. Almost all modern web applications have JavaScript at the core of their user
+interface. 
 
 ---
 ## **index.html**
@@ -86,7 +88,9 @@ what data and data-types the Interactive prototype needs to function correctly. 
 saw one way to create a comment section (/* ...some multi-lined comment */), but there is 
 another, more common, way that is similar to the '#' comment in Python: 
 
+~~~~javascript
 // some single line comment
+~~~~
 
 Moving on, above the comment we see the following code:
 
@@ -219,5 +223,23 @@ This code does one thing: it takes the config parameter we handed into the Inter
 as an argument and, again, passes it to the child scope of the Interactive. With the config
 now within the scope of the init function, the data from the config is made available to the
 Interactive prototype. 
+
+4. **Semicolons:** One of the most confusing aspects to beginners is often where to put a 
+semicolon. It's actually fairly simple. There are two main rules, and the block of code 
+illustrated both:
+
+* After an assignment, as in:
+
+~~~~javascript
+// An assignment
+var Interactive = function (config) { ... };
+~~~~
+
+* And after a function call:
+
+~~~~javascript
+// A function call
+this.init(config);
+~~~~
 
 ---
