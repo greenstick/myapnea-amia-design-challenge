@@ -24,7 +24,7 @@ as clicking on, hovering on to, or hovering off of an HTML element. Once an even
 bound to an HTML element, it can trigger a function. Generally, a function can manipulate
 *almost* anything in the HTML or CSS of the webpage.
 
-**A Quick Note on Functions**
+### **A Quick Note on JavaScript Functions**
 What do these functions do? This may seem like a silly question, but JavaScript functions
 can do a very diverse number of things that can't easily be done in Python and are flat out
 impossible in R (unless your using Shiney, which uses JavaScript to do its front-end bidding.)
@@ -48,14 +48,35 @@ create an email client application (like Gmail), or even visualize live data str
 network. Almost all modern web applications have JavaScript at the core of their user
 interface. 
 
+### **The Web Development Workflow**
+For web development, the most efficient workflow really will come from a simple text editor
+and a good web browser. For text editing I use Sublime Text, although there are many, many
+alternatives out there. Regarding browsers, even though for general browsing I use Apple's 
+Safari, I'll say that by far the best browser for web development is Google's Chrome. Firefox
+is good too, and has a web extension called Firebug that gives it some great capabilities. 
+
+We can go over the specific workflow for web development when we meet, but I'll write a quick
+synopsis here as a reference, just in case.
+
+### **Accessing The Developer Tools**
+Right-click an element of interest and select 'Inspect Element' from the menu.
+
+The window of your developer tools may look different to you, but for me, I see the HTML 
+document with its elements on top, CSS styles of that element in the middle pane, and on the
+bottom, the JavaScript console. 
+
+We can go over more specific ways of using these tools as needed. You will likely become good
+friends :)
+
 ---
 ## **index.html**
 
-
+Right now this is a fairly bare-bones HTML index file. 
 
 ---
 ## **interactive.css**
 
+Currently an empty CSS file.
 
 ---
 ## **interactive.js**
@@ -219,12 +240,8 @@ var Person 	= {
 // Calling the Person variable would print the object assigned to it to the console
 Person
 
-> *outputs the Person object*
-
 // The following is exactly the same command, just more explicit
 window.Person
-
-> *outputs the Person object*
 
 // Let's say we want to figure out what parts this person has, this is how we may
 // access the more extensible version of the Person object
