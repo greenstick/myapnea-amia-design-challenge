@@ -208,6 +208,21 @@ var Person 	= {
 } 
 ~~~~
 
+> Did you catch it? You may be asking yourself, where did you define the 'global scope'. Well,
+> to answer you, you astute observer, it need not be defined. Traditionally in JavaScript, the
+> global scope is the browser's window. When we create a House or Person object in the global
+> scope, it automatically attaches itself to the window object. So, using the example above, 
+> if you wanted to call the Person object in the browsers JavaScript console, you could type 
+> the following:
+
+~~~~javascript
+// Calling the Person variable would print the object assigned to it to the console
+Person
+
+// The following is exactly the same command, just more explicit
+window.Person
+~~~~
+
 2. **Assignment & Functions:** After the var, we name our variable: Interactive. This is going 
 to be the core variable where the entire interactive lives. Using this variable, we can 
 reference the interactive as needed. This variable is assigned to a function (the function key
