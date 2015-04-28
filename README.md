@@ -219,12 +219,12 @@ var Person 	= {
 // Calling the Person variable would print the object assigned to it to the console
 Person
 
-\> *outputs the Person object*
+> *outputs the Person object*
 
 // The following is exactly the same command, just more explicit
 window.Person
 
-\> *outputs the Person object*
+> *outputs the Person object*
 
 // Let's say we want to figure out what parts this person has, this is how we may
 // access the more extensible version of the Person object
@@ -232,8 +232,8 @@ for (var i = 0; i < Person.parts.length; i++) {
 	console.log("A person has " + Person.parts[i].count + " " + Person.parts[i].name + "s!");
 }
 
-\> "A person has 2 hands!"
-\> "A person has 2 legs!"
+> "A person has 2 hands!"
+> "A person has 2 legs!"
 
 // The above section of code will look familiar if you've worked with Java;
 // note that the console.log() function is similar to the printf() function
