@@ -5,3 +5,120 @@ Client: MyApnea.org
 File: interactive.css
 */
 
+#interactive-wrapper {
+	position: relative;
+	margin: 0px auto 0px auto;
+	height: 560px;
+	width: 768px;
+	font-family: 'helvetica', 'sans-serif';
+}
+#interactive-wrapper #interactive-header {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 744px;
+	height: 56px;
+	padding: 12px;
+	background-color: grey;
+}
+#interactive-wrapper #interactive-header .tab {
+	position: relative;
+}
+#interactive-wrapper #interactive-navigation {
+	position: absolute;
+	top: 80px;
+	left: 0px;
+	height: 456px;
+	width: 56px;
+	padding: 12px;
+	background-color: lightgrey;
+}
+#interactive-wrapper #interactive-navigation .button {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	height: 8px;
+	width: 56px;
+	padding: 12px 0px;
+	background-color: transparent;
+	transition: all 6s;
+	cursor: pointer;
+	font-size: 8px;
+	text-align: center;
+}
+#interactive-wrapper #interactive-navigation .button:hover {
+	background-color: black;
+	color: yellow;
+}
+#interactive-wrapper #interactive-modules {
+	position: absolute;
+	top: 80px;
+	left: 80px;
+	width: 664px;
+	height: 416px;
+	padding: 12px;
+	background-color: azure;
+}
+#interactive-wrapper #interactive-modules .module {
+	position: relative;
+	float: left;
+	width: 182px;
+	height: 182px;
+	padding: 13px 19px;
+}
+
+#interactive-wrapper #interactive-modules .module .dial .dialBody {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	width: 93px;
+	height: 93px;
+	margin: 46px auto;
+	background: transparent;
+	cursor: pointer;
+	z-index: 1000;
+}
+#interactive-wrapper #interactive-modules .module .dial .dialBody svg g .dialCenter {
+	fill: #ffffff;
+}
+#interactive-wrapper #interactive-modules .module .dial .dialBody .percent {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 53px;
+	height: 21px;
+	margin: 35px 41px 35px 21px;
+	padding: 2px 0 0 0;
+	font-size: 16px;
+	text-align: center;
+}
+
+#interactive-wrapper #interactive-footer {
+	position: absolute;
+	top: 520px;
+	left: 80px;
+	width: 664px;
+	height: 16px;
+	padding: 12px;
+	background-color: grey;
+}
+
+#progress-bar {
+	position: relative;
+	width: 80%;
+	height: 78%;
+	margin: 0% 7%;
+}
+#progress-bar .bar-container {
+	position: absolute;
+	width: 98%;
+	height: 135%;
+	border-width: 2px;
+	border-color: black;
+}
+#progress-bar .bar-container .bar-value {
+	position: absolute;
+	width: 20%;
+	height: 100%;
+	background-color: azure;
+}

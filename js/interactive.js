@@ -5,117 +5,7 @@ Client: MyApnea.org
 File: interactive.js
 */
 
-(function () {
-
-	/*
-	Dial Prototype
-
-	@ params: {
-		id 			(String, required)	: HTML element ID of the dial
-		display 	(String, required) 	: HTML ellement class of the display
-		value 		(Number, optional)	: default dial value
-		innerRadius (Number, optional) 	: inner width of the dial SVG element
-		outerRadius (Number, optional) 	: outer width of the dial SVG element; the inner width - the outer width makes the width of the arc
-		startAngle 	(Number, optional)  : start angle of the dial, typically should be 0
-		duration 	(Number, optional) 	: duration of the interpolations
-		easing 		(String, optional)	: examples include 'linear', 'easeOutCirc', etc.
-	}
-
-	*/
-
-	// Instantiation Function
-	var Dial = function (config) {
-		this.init(config);
-	};
-
-	// Prototype
-	Dial.prototype = {
-
-		/*
-		Core Routines
-		*/
-
-		init: function (config) {
-			var dial = this;
-				dial.id 			= args.id,
-				dial.display 		= args.display,
-				dial.value 			= args.value 			|| 0,
-				dial.innerRadius	= args.innerRadius 		|| 30,
-				dial.outerRadius	= args.outerRadius 		|| 45,
-				dial.startAngle 	= args.startAngle 		|| 0,
-				dial.duration 		= args.duration 		|| 600,
-				dial.easing 		= args.easing 			|| 'linear',
-				dial.history 		= 0,
-
-				dial.arcDims 		= d3.svg.arc()
-					.innerRadius(dial.innerRadius)
-					.outerRadius(dial.outerRadius)
-					.startAngle((dial.startAngle * 360) * (Math.PI/180)),
-				
-				dial.arc 			= d3.select(dial.id + ' svg g')
-					.append('path')
-					.datum({endAngle: 0})
-					.attr('class', 'arc')
-					.attr('d', arc)
-					.attr('transform', 'translate(46.5, 46.5)');
-
-				// Dial it up!
-				dial.interpolateArc(dial.value);
-				dial.interpolateText(dial.value, function () {
-					$(dial.id + ' .percent').text(dial.value * 100);
-				});
-		},
-
-		// Update the Dial
-		update: function (values, callback) {
-			var dial = this;
-				dial.interpolateArc(value);
-				dial.interpolateText(value, function () {
-					$(dial.id + ' .percent').text(value * 100);
-				});
-			if (typeof callback == 'function') callback();
-		},
-
-		/*
-		Dial Utility Functions
-		*/
-
-		// Interpolate the Text Value From the Current to the Target
-		interpolateText: function (end, duration, callback) {
-			var dial = this;
-			d3.select(dial.element + '. percent')
-				.transition()
-				.duration(dial.duration)
-				.ease(dial.easing)
-				.tween('text', function () {
-					var interpolation = d3.interpolate(dial.history, end);
-					return function (t) {
-						this.textContent = ((interpolation(t)) * 100).toFixed(1) + "%";
-					};
-				});
-			if (typeof callback == 'function') callback();
-		},
-
-		// Interpolate the Arc
-		interpolateArc: function (end, arc, callback) {
-			var dial = this,
-				value = end * 7.2,
-				tween = function (transition, newAngle) {
-					transition.attrTween('d', function (d) {
-						var interpolation = d3.interpolate(dial.history, end);
-						return function (t) {
-							d.endAngle = interpolate(t);
-							return dial.arcDimensions(d);
-						};
-					});
-				};
-			// Call Arc Transition
-			dial.arc.transition()
-				.duration(dial.duration)
-				.call(tween, ((value * 100) * Math.PI/180));
-			if (typeof callback == 'function') callback();
-		}
-	};
+// (function () {
 
 	/*
 	Interactive Prototype
@@ -150,12 +40,59 @@ File: interactive.js
 				I.element 			= config.element 		|| '#interactive-wrapper',
 				I.navigation		= config.navigation 	|| '#interactive-navigation',
 				I.loader			= config.loader			|| '#interactive-loader',
+				I.moduleParent 		= config.moduleParent 	|| '#interactive-modules',
+				I.moduleElement 	= config.moduleElement 	|| '.module',
 				I.activeState 		= config.activeState 	|| 'default',
 				I.loggedIn 			= config.loggedIn 		|| false,
-				I.data 				= I.request({
-					type 			: 'GET',
-					route 			: '',
-					data 			: '' 
+				I.data 				= {},
+				I.dials 			= {},
+				I.utilities 		= new Utilities({});
+				I.initDials();
+				// Quick & Dirty Request For Survey Data to Generate Test Data
+				I.request({
+					key 	: "survey",
+					type 	: "GET",
+					route 	: "data/surveys.json",
+					data 	: ""
+				}, function () {
+					I.surveyData = I.data.survey;
+					var responses 	= [],
+						count 		= 200,
+						name 		= "About Me";
+					for (var i = 0; i < count; i++) {
+						var obj = {
+							survey: name,
+							responses: []
+						};
+						for (var j = 0; j < I.surveyData.length; j++) {
+							var survey = I.surveyData[j];
+							for (var k = 0; k < survey.questions.length; k++) {
+								var random 	= Math.random(),
+									index 	= Math.floor(random * survey.questions[k].options.length),
+									answer;
+								if (survey.questions[k].options.length === 0) {
+									answer 		= new Date(); 
+									response 	= {
+										number 		: survey.questions[k].number,
+										question 	: survey.questions[k].question,
+										answer 		: answer,
+										answercode 	: null
+									};
+								} else {
+									answer 		= survey.questions[k].options[index],
+									response 	= {
+										number 		: survey.questions[k].number,
+										question 	: survey.questions[k].question,
+										answer 		: answer,
+										answercode 	: index
+									};
+								};
+								obj.responses.push(response);
+							}
+						}
+						responses.push(obj);
+					}
+					console.log(responses);
 				});
 			return I;
 		},
@@ -163,7 +100,6 @@ File: interactive.js
 		update: function (state) {
 			var I = this;
 				I.activeState 	= state;
-
 		},
 
 		/*
@@ -173,16 +109,17 @@ File: interactive.js
 		// Basic AJAX Request Function
 		request: function (args, callback) {
 			var I 				= this,
+				key 			= args.key,
 				type 			= args.type,
 				route 			= args.route,
 				data 			= args.data;
 			$.ajax({
 				type 			: type,
-				route 			: route,
+				url 			: route,
 				dataType		: "json",
 				data 			: data
 			}).done(function (response) {
-				I.data = response;
+				I.data[key] = response;
 				console.log("XHR Notification: Request Success");
 			}).fail(function () {
 				console.log("XHR Notification: Request Fail");
@@ -193,17 +130,6 @@ File: interactive.js
 			});
 		},
 
-		// Generate a Unique Identifier - Used to uniquely access visualization modules
-		generateUUID: function () {
-		 	var d 		= new Date().now,
-		    	uuid 	= 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-		        	var r = (d + Math.random()*16)%16 | 0;
-		        	d = Math.floor(d/16);
-		        	return (c == 'x' ? r : (r&0x7|0x8)).toString(16);
-		    	});
-		    return uuid;
-		},
-
 		/*
 		User Interface Methods
 		*/
@@ -212,8 +138,39 @@ File: interactive.js
 		toggleNavigation: function () {
 			var I = this;
 			$(I.navigation).toggleClass("active");
+		},
+
+		initDials: function () {
+			var I = this;
+			$('.dial').each(function (i, e) {
+				var id 			= I.utilities.generateUUID();
+				$(e).attr('id', id);
+				var instance	= '#UUID-' + id,
+					display 	= instance + ' .percent',
+					dial 		= new Dial({
+						id 			: instance,
+						display 	: display
+					});
+					I.dials[id] = dial;
+			});
+		},
+
+		updateDials: function (arr) {
+			var I = this;
+			$.each('.dials', function (i, e) {
+				var id 		= $(e).attr("id"),
+					random 	= arr[i];
+				I.dials[id].update(random);
+			});
 		}
 
 
 	};
-}(jQuery, ko, d3))
+
+var config = {
+	parent: 'body'
+};
+
+var interactive = new Interactive(config);
+
+// }(jQuery, ko, d3))

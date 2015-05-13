@@ -1,0 +1,38 @@
+[
+	{
+		"survey": "About Me",
+		"responses": [
+			{
+				"number": 1,
+				"question": "What if your date of birth?",
+				"answer": "10/04/1988",
+				"answercode": 
+			},
+			{
+				"number": 2,
+				"question": "What is your sex?",
+				"answer": "Male"
+			},
+			{
+				"number": 3,
+				"question": "What is your racial background?",
+				"answer": "Some other race or origin (please specify)"
+			},
+			{
+				"number": 4,
+				"question": "Are you of Hispanic, Latino, or Spanish origin or ancestry?",
+				"answer": "Unsure"
+			},
+			{
+				"number": 5,
+				"question": "What is the highest degree or level of school you have completed?",
+				"answer": "Some college or 2-year degree"
+			},
+			{
+				"number": 6,
+				"question": "Last year, what was your total household income from all sources, before taxes?",
+				"answer": "$250,000 and above"
+			}
+		]
+	}
+]
