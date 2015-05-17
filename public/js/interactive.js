@@ -44,12 +44,10 @@ File: interactive.js
 				I.moduleElement 	= config.moduleElement 	|| '.module',
 				I.activeState 		= config.activeState 	|| 'default',
 				I.loggedIn 			= config.loggedIn 		|| false,
-				I.data 				= {
-					survey: window.surveys
-				},
+				I.surveySchema 		= window.surveyschemas,
 				I.dials 			= {},
-				I.utilities 		= new Utilities({});
-				I.surveyData 		= I.generateSampleData(I.data.survey);
+				I.utilities 		= new Utilities({}),
+				I.surveyData 		= I.generateSampleData(I.surveySchema, 200);
 				I.initDials();
 			return I;
 		},
@@ -87,14 +85,14 @@ File: interactive.js
 			});
 		},
 
-		generateSampleData: function (data) {
-			var surveyResponses = {},
-				count 			= 200;
+		generateSampleData: function (data, count) {
+			var surveyData 		= [];
 			for (var i = 0; i < data.length; i++) {
-				var survey 	= data[i];
+				var survey 	= data[i],
+					title 	= data[i].title;
 				for (var j = 0; j < count; j++) {
-					var obj 	= {
-						survey 		: survey.name,
+					var submission 	= {
+						title 		: survey.title,
 						responses 	: []
 					};
 					for (var k = 0; k < survey.questions.length; k++) {
@@ -134,12 +132,13 @@ File: interactive.js
 								answercode 	: index
 							};
 						}
-						obj.responses.push(response);
+						submission.responses.push(response);
 					}
-					responses.push(obj);
+					surveyData.push(submission);
 				}
 			}
-			return responses;
+			// console.log(surveyData);
+			return surveyData;
 		},
 
 		/*

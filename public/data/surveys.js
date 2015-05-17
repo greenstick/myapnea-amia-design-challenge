@@ -1,6 +1,7 @@
-window.surveys = [
+// Attach Survey Schmemas to Window
+window.surveyschemas = [
     {
-        "name": "About Me",
+        "title": "About Me",
         "questions": [
             {
                 "number": 1,
@@ -97,7 +98,7 @@ window.surveys = [
         ]
     },
     {
-        "name": "Additional Information About Me",
+        "title": "Additional Information About Me",
         "questions": [
             {
                 "number": 1,
@@ -176,7 +177,7 @@ window.surveys = [
         ]
     },
     {
-        "name": "About My Family",
+        "title": "About My Family",
         "questions": [
             {
                 "number": 1,
@@ -259,7 +260,7 @@ window.surveys = [
         ]
     },
     {
-        "name": "My Health Conditions",
+        "title": "My Health Conditions",
         "questions": [
             {
                 "number": 1,
@@ -472,7 +473,7 @@ window.surveys = [
         ]
     },
     {
-        "name": "My Sleep Pattern",
+        "title": "My Sleep Pattern",
         "questions": [
             {
                 "number": 1,
@@ -638,7 +639,7 @@ window.surveys = [
         ]
     },
     {
-        "name": "My Sleep Quality",
+        "title": "My Sleep Quality",
         "questions": [
             {
                 "number": 1,
@@ -763,7 +764,7 @@ window.surveys = [
         ]
     },
     {
-        "name": "My Sleep Apnea",
+        "title": "My Sleep Apnea",
         "questions": [
             {
                 "number": 1,
@@ -1053,7 +1054,7 @@ window.surveys = [
         ]
     },
     {
-        "name": "My Sleep Apnea Treatment",
+        "title": "My Sleep Apnea Treatment",
         "questions": [
             {
                 "number": 1,
@@ -1294,6 +1295,484 @@ window.surveys = [
                     "Slightly satisfied",
                     "Satisfied",
                     "Very satisfied",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            }
+        ]
+    },
+    {
+        "title": "My Risk Profile",
+        "questions": [
+            {
+                "number": 1,
+                "question": "Do you currently experience snoring? How long has this symptom been present?",
+                "options": [
+                    "0 - 3 months",
+                    "3 - 6 months",
+                    "6 - 12 months",
+                    "12+ months",
+                    "N/A"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 2,
+                "question": "Do you currently experience sleepiness? How long has this symptom been present?",
+                "options": [
+                    "0 - 3 months",
+                    "3 - 6 months",
+                    "6 - 12 months",
+                    "12+ months",
+                    "N/A"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 3,
+                "question": "Do you currently experience tiredness? How long has this symptom been present?",
+                "options": [
+                    "0 - 3 months",
+                    "3 - 6 months",
+                    "6 - 12 months",
+                    "12+ months",
+                    "N/A"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 4,
+                "question": "Have you recently experienced a driving or work accident? How long ago did this occure?",
+                "options": [
+                    "0 - 3 months",
+                    "3 - 6 months",
+                    "6 - 12 months",
+                    "12+ months",
+                    "N/A"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 5,
+                "question": "Do you currently experience shortness of breath during sleep? How long has this symptom been present?",
+                "options": [
+                    "0 - 3 months",
+                    "3 - 6 months",
+                    "6 - 12 months",
+                    "12+ months",
+                    "N/A"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 6,
+                "question": "Do you currently experience stopped breathing during sleep? How long has this symptom been present?",
+                "options": [
+                    "0 - 3 months",
+                    "3 - 6 months",
+                    "6 - 12 months",
+                    "12+ months",
+                    "N/A"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 7,
+                "question": "Do you currently have heart disease? How long has this symptom been present?",
+                "options": [
+                    "0 - 3 months",
+                    "3 - 6 months",
+                    "6 - 12 months",
+                    "12+ months",
+                    "N/A"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 8,
+                "question": "Do you currently experience high blood pressure? How long has this symptom been present?",
+                "options": [
+                    "0 - 3 months",
+                    "3 - 6 months",
+                    "6 - 12 months",
+                    "12+ months",
+                    "N/A"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 9,
+                "question": "Do you currently experience depressed mood? How long has this symptom been present?",
+                "options": [
+                    "0 - 3 months",
+                    "3 - 6 months",
+                    "6 - 12 months",
+                    "12+ months",
+                    "N/A"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 10,
+                "question": "Do you currently experience irritability? How long has this symptom been present?",
+                "options": [
+                    "0 - 3 months",
+                    "3 - 6 months",
+                    "6 - 12 months",
+                    "12+ months",
+                    "N/A"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 11,
+                "question": "Do you have a concerned friend or spouse? How long has this symptom been present?",
+                "options": [
+                    "0 - 3 months",
+                    "3 - 6 months",
+                    "6 - 12 months",
+                    "12+ months",
+                    "N/A"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 12,
+                "question": "Do you currently experience forgetfulness? How long has this symptom been present?",
+                "options": [
+                    "0 - 3 months",
+                    "3 - 6 months",
+                    "6 - 12 months",
+                    "12+ months",
+                    "N/A"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            }
+        ]
+    },
+    {
+        "title": "My Quality of Life",
+        "questions": [
+            {
+                "number": 1,
+                "question": "In general, how would you rate your health?",
+                "options": [
+                    "Poor",
+                    "Fair",
+                    "Good",
+                    "Very good",
+                    "Excellent",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 2,
+                "question": "Compared to one year ago, how would you rate your health in general now?",
+                "options": [
+                    "Much worse than one year ago",
+                    "Somewhat worse now than one year ago",
+                    "About the same as one year ago",
+                    "Somewhat better now than one year ago",
+                    "Much better now than one year ago",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 3,
+                "question": "In general, how would you rate your quality of life?",
+                "options": [
+                    "Poor",
+                    "Fair",
+                    "Good",
+                    "Very good",
+                    "Excellent",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 4,
+                "question": "To what extent are you able to carry out your everyday physical activities such as walking, climbing stairs, carrying groceries, or moving a chair?",
+                "options": [
+                    "Not at all",
+                    "A little",
+                    "Moderately",
+                    "Mostly",
+                    "Completely",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 5,
+                "question": "How well are you able to run errands and shop?",
+                "options": [
+                    "Unable to do",
+                    "With much difficulty",
+                    "With some difficulty",
+                    "With a little difficulty",
+                    "Without any difficulty",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 6,
+                "question": "In the past 7 days, how much did pain interfere with your day to day activities?",
+                "options": [
+                    "Very much",
+                    "Quite a bit",
+                    "Somewhat",
+                    "A little bit",
+                    "Not at all",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 7,
+                "question": "In the past 7 days, I felt depressed:",
+                "options": [
+                    "Always",
+                    "Often",
+                    "Sometimes",
+                    "Rarely",
+                    "Never",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 8,
+                "question": "During the past 7 days, I felt fatigued:",
+                "options": [
+                    "Very much",
+                    "Quite a bit",
+                    "Somewhat",
+                    "A little bit",
+                    "Not at all",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 9,
+                "question": "In the past 7 days, I had a problem with my sleep:",
+                "options": [
+                    "Very much",
+                    "Quite a bit",
+                    "Somewhat",
+                    "A little bit",
+                    "Not at all",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 10,
+                "question": "I have trouble doing all of my regular leisure activities with others:",
+                "options": [
+                    "Always",
+                    "Often",
+                    "Sometimes",
+                    "Rarely",
+                    "Never",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            }
+        ]
+    },
+    {
+        "title": "My Interest in Research",
+        "questions": [
+            {
+                "number": 1,
+                "question": "How did you hear about MyApnea.Org",
+                "options": [
+                    "American Sleep Apnea Association (ASAA)",
+                    "A.W.A.K.E. Group",
+                    "CPAP company",
+                    "Personal or family doctor",
+                    "Clinic or hospital",
+                    "CPAP provider",
+                    "Poster or other advertisement",
+                    "Facebook",
+                    "Twitter",
+                    "Family member",
+                    "Friend",
+                    "Internet search",
+                    "Other patient-centered network",
+                    "Other",
+                    "Prefer not to answer"
+                ],
+                "multiselect": true,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 2,
+                "question": "Have you ever taken part in research projects related to your health or the health of a family member?",
+                "options": [
+                    "Yes",
+                    "No",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 3,
+                "question": "How would you prefer to be contacted to learn about potential research studies?",
+                "options": [
+                    "E-mail",
+                    "Cell phone text messaging",
+                    "Social media (such as Facebook, Twitter, or Pinterest)",
+                    "Letter or post card in the mail",
+                    "A computer created phone message",
+                    "Personal phone call from research staff or my doctore",
+                    "Talking face-to-face with research staff or my docter when I am visiting the clinic",
+                    "Other",
+                    "I am not interested in being contacted about future research studies"
+                ],
+                "multiselect": true,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 4,
+                "question": "If a researcher was studying a condition or health problem that you cared about, how interested would you be in participating by completing a survey two or more times?",
+                "options": [
+                    "Not interested",
+                    "Somewhat interested",
+                    "Very interested",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 5,
+                "question": "If a researcher was studying a condition or health problem that you cared about, how interested would you be in participating by giving a blood sample?",
+                "options": [
+                    "Not interested",
+                    "Somewhat interested",
+                    "Very interested",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 6,
+                "question": "If a researcher was studying a condition or health problem that you cared about, how interested would you be in participating by talking over the phone or the Internet?",
+                "options": [
+                    "Not interested",
+                    "Somewhat interested",
+                    "Very interested",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 7,
+                "question": "If a researcher was studying a condition or health problem that you cared about, how interested would you be in participating by taking a medication?",
+                "options": [
+                    "Not interested",
+                    "Somewhat interested",
+                    "Very interested",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 8,
+                "question": "If a researcher was studying a condition or health problem that you cared about, how interested would you be in participating by meeting at a local community center or school?",
+                "options": [
+                    "Not interested",
+                    "Somewhat interested",
+                    "Very interested",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 9,
+                "question": "If a researcher was studying a condition or health problem that you cared about, how interested would you be in participating by involving you and other people in your family?",
+                "options": [
+                    "Not interested",
+                    "Somewhat interested",
+                    "Very interested",
+                    "Prefer not to answer"
+                ],
+                "multiselect": false,
+                "answer": false,
+                "validation": {}
+            },
+            {
+                "number": 10,
+                "question": "If a researcher was studying a condition or health problem that you cared about, how interested would you be in participating by staying in the hospital for 1 or more days?",
+                "options": [
+                    "Not interested",
+                    "Somewhat interested",
+                    "Very interested",
                     "Prefer not to answer"
                 ],
                 "multiselect": false,

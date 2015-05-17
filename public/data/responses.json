@@ -6,32 +6,37 @@
 				"number": 1,
 				"question": "What if your date of birth?",
 				"answer": "10/04/1988",
-				"answercode": 
+				"answerCode": null
 			},
 			{
 				"number": 2,
 				"question": "What is your sex?",
-				"answer": "Male"
+				"answer": "Male",
+				"answerCode": 1
 			},
 			{
 				"number": 3,
 				"question": "What is your racial background?",
-				"answer": "Some other race or origin (please specify)"
+				"answer": "Some other race or origin (please specify)",
+				"answerCode": 5
 			},
 			{
 				"number": 4,
 				"question": "Are you of Hispanic, Latino, or Spanish origin or ancestry?",
-				"answer": "Unsure"
+				"answer": "Unsure",
+				"answerCode": 5
 			},
 			{
 				"number": 5,
 				"question": "What is the highest degree or level of school you have completed?",
-				"answer": "Some college or 2-year degree"
+				"answer": "Some college or 2-year degree",
+				"answerCode": 3
 			},
 			{
 				"number": 6,
 				"question": "Last year, what was your total household income from all sources, before taxes?",
-				"answer": "$250,000 and above"
+				"answer": "$250,000 and above",
+				"answerCode": 6
 			}
 		]
 	}

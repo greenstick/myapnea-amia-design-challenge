@@ -106,7 +106,7 @@
 				.duration(dial.duration)
 				.call(tween, ((value * 100) * Math.PI/180));
 
-			console.log(dial.arc);
+			// console.log(dial.arc);
 			if (typeof callback == 'function') callback();
 		}
 	};
