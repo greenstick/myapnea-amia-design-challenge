@@ -44,54 +44,13 @@ File: interactive.js
 				I.moduleElement 	= config.moduleElement 	|| '.module',
 				I.activeState 		= config.activeState 	|| 'default',
 				I.loggedIn 			= config.loggedIn 		|| false,
-				I.data 				= {},
+				I.data 				= {
+					survey: window.surveys
+				},
 				I.dials 			= {},
 				I.utilities 		= new Utilities({});
+				I.surveyData 		= I.generateSampleData(I.data.survey);
 				I.initDials();
-				// Quick & Dirty Request For Survey Data to Generate Test Data
-				I.request({
-					key 	: "survey",
-					type 	: "GET",
-					route 	: "data/surveys.json",
-					data 	: ""
-				}, function () {
-					// I.surveyData = I.data.survey;
-					var responses 	= [],
-						count 		= 200;
-					for (var i = 0; i < I.data.survey.length; i++) {
-						var survey 	= I.data.survey[i];
-						for (var j = 0; j < count; j++) {
-							var obj 	= {
-								survey 		: survey.name,
-								responses 	: []
-							};
-							for (var k = 0; k < survey.questions.length; k++) {
-								var random 	= Math.random(),
-									index 	= Math.floor(random * survey.questions[k].options.length),
-									answer;
-								if (survey.questions[k].options.length === 0) {
-									answer 		= new Date(); 
-									response 	= {
-										number 		: survey.questions[k].number,
-										question 	: survey.questions[k].question,
-										answer 		: answer,
-										answercode 	: null
-									};
-								} else {
-									answer 		= survey.questions[k].options[index],
-									response 	= {
-										number 		: survey.questions[k].number,
-										question 	: survey.questions[k].question,
-										answer 		: answer,
-										answercode 	: index
-									};
-								};
-								obj.responses.push(response);
-							}
-						}
-					}
-					console.log(responses);
-				});
 			return I;
 		},
 
@@ -126,6 +85,61 @@ File: interactive.js
 				console.log("XHR Notification: Request Complete");
 				if (typeof callback === 'function') callback();
 			});
+		},
+
+		generateSampleData: function (data) {
+			var surveyResponses = {},
+				count 			= 200;
+			for (var i = 0; i < data.length; i++) {
+				var survey 	= data[i];
+				for (var j = 0; j < count; j++) {
+					var obj 	= {
+						survey 		: survey.name,
+						responses 	: []
+					};
+					for (var k = 0; k < survey.questions.length; k++) {
+						var random 		= Math.random(),
+							index 		= Math.floor(random * survey.questions[k].options.length),
+							response 	= {},
+							answer;
+						if (survey.questions[k].validation.hasOwnProperty("type")) {
+							var value 		= survey.questions[k].validation,
+								answerTypes = {
+									Datetime 	: function () {
+										return new Date();
+									},
+									Height 		: function () {
+										return Math.random() * 108;
+									},
+									Weight 		: function () {
+										return Math.random() * 400;
+									},
+									Hours 		: function () {
+										return Math.random() * 12;
+									}
+								},
+								answer 		= answerTypes[value.type](),
+								response 	= {
+									number 		: survey.questions[k].number,
+									question 	: survey.questions[k].question,
+									answer 		: answer,
+									answercode 	: null
+								};
+						} else {
+							answer 		= survey.questions[k].options[index],
+							response 	= {
+								number 		: survey.questions[k].number,
+								question 	: survey.questions[k].question,
+								answer 		: answer,
+								answercode 	: index
+							};
+						}
+						obj.responses.push(response);
+					}
+					responses.push(obj);
+				}
+			}
+			return responses;
 		},
 
 		/*
