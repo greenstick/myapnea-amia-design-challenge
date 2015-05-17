@@ -11,7 +11,7 @@ Utilities.prototype = {
 		return this;
 	},
 
-	// Generate a Unique Identifier - Used to uniquely access visualization modules
+	// Generate a Unique Identifier
 	generateUUID: function () {
 	 	var d = new Date().getTime();
 	    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {

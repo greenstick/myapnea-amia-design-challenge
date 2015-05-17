@@ -55,17 +55,16 @@ File: interactive.js
 					route 	: "data/surveys.json",
 					data 	: ""
 				}, function () {
-					I.surveyData = I.data.survey;
+					// I.surveyData = I.data.survey;
 					var responses 	= [],
-						count 		= 200,
-						name 		= "About Me";
-					for (var i = 0; i < count; i++) {
-						var obj = {
-							survey: name,
-							responses: []
-						};
-						for (var j = 0; j < I.surveyData.length; j++) {
-							var survey = I.surveyData[j];
+						count 		= 200;
+					for (var i = 0; i < I.data.survey.length; i++) {
+						var survey 	= I.data.survey[i];
+						for (var j = 0; j < count; j++) {
+							var obj 	= {
+								survey 		: survey.name,
+								responses 	: []
+							};
 							for (var k = 0; k < survey.questions.length; k++) {
 								var random 	= Math.random(),
 									index 	= Math.floor(random * survey.questions[k].options.length),
@@ -90,7 +89,6 @@ File: interactive.js
 								obj.responses.push(response);
 							}
 						}
-						responses.push(obj);
 					}
 					console.log(responses);
 				});
