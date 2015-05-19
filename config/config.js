@@ -27,7 +27,7 @@ var config      = {
                 name: 'amia-design-challenge'
             },
             port: 3000,
-            db: 'mongodb://localhost/amia-design-challenge-production'
+            db: 'mongodb://' + proccess.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@' + process.env.MONGO_DATABASE
         }
     };
 
