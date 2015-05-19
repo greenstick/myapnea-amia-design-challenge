@@ -1,6 +1,7 @@
 var express 	= require('express'),
 	config 		= require('./config/config'),
 	glob 		= require('glob'),
+	newrelic 	= require('newrelic'),
 	mongoose 	= require('mongoose');
 
 // Connect to Database
