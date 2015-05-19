@@ -47,7 +47,10 @@ File: interactive.js
 				I.surveySchema 		= window.surveyschemas,
 				I.dials 			= {},
 				I.utilities 		= new Utilities({}),
-				I.surveyData 		= I.generateSampleData(I.surveySchema, 200);
+				I.generator 		= new Generate({}),
+				I.surveyData 		= I.generator.generateSurveyData(I.surveySchema, 200),
+				I.userData 			= I.generator.generateUserData(200),
+				I.socialData 		= I.generator.generateSocialData(2000, 200),
 				I.initDials();
 			return I;
 		},
@@ -85,62 +88,6 @@ File: interactive.js
 			});
 		},
 
-		generateSampleData: function (data, count) {
-			var surveyData 		= [];
-			for (var i = 0; i < data.length; i++) {
-				var survey 	= data[i],
-					title 	= data[i].title;
-				for (var j = 0; j < count; j++) {
-					var submission 	= {
-						title 		: survey.title,
-						responses 	: []
-					};
-					for (var k = 0; k < survey.questions.length; k++) {
-						var random 		= Math.random(),
-							index 		= Math.floor(random * survey.questions[k].options.length),
-							response 	= {},
-							answer;
-						if (survey.questions[k].validation.hasOwnProperty("type")) {
-							var value 		= survey.questions[k].validation,
-								answerTypes = {
-									Datetime 	: function () {
-										return new Date();
-									},
-									Height 		: function () {
-										return Math.random() * 108;
-									},
-									Weight 		: function () {
-										return Math.random() * 400;
-									},
-									Hours 		: function () {
-										return Math.random() * 12;
-									}
-								},
-								answer 		= answerTypes[value.type](),
-								response 	= {
-									number 		: survey.questions[k].number,
-									question 	: survey.questions[k].question,
-									answer 		: answer,
-									answercode 	: null
-								};
-						} else {
-							answer 		= survey.questions[k].options[index],
-							response 	= {
-								number 		: survey.questions[k].number,
-								question 	: survey.questions[k].question,
-								answer 		: answer,
-								answercode 	: index
-							};
-						}
-						submission.responses.push(response);
-					}
-					surveyData.push(submission);
-				}
-			}
-			// console.log(surveyData);
-			return surveyData;
-		},
-
 		/*
 		User Interface Methods
 		*/
@@ -154,7 +101,7 @@ File: interactive.js
 		initDials: function () {
 			var I = this;
 			$('.dial').each(function (i, e) {
-				var id 			= I.utilities.generateUUID();
+				var id 			= I.generator.generateUUID();
 				$(e).attr('id', id);
 				var instance	= '#UUID-' + id,
 					display 	= instance + ' .percent',
