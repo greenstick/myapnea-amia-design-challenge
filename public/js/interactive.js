@@ -44,13 +44,13 @@ File: interactive.js
 				I.moduleElement 	= config.moduleElement 	|| '.module',
 				I.activeState 		= config.activeState 	|| 'default',
 				I.loggedIn 			= config.loggedIn 		|| false,
-				I.surveySchema 		= window.surveyschemas,
+				I.surveySchema 		= window.surveyschema,
 				I.dials 			= {},
 				I.utilities 		= new Utilities({}),
 				I.generator 		= new Generate({}),
-				I.surveyData 		= I.generator.generateSurveyData(I.surveySchema, 200),
-				I.userData 			= I.generator.generateUserData(200),
-				I.socialData 		= I.generator.generateSocialData(2000, 200),
+				I.surveyData 		= I.generator.generateSurveyData(I.surveySchema, 20),
+				I.userData 			= I.generator.generateUserData(20),
+				I.socialData 		= I.generator.generateSocialData(200, 20),
 				I.initDials();
 			return I;
 		},

@@ -6,13 +6,13 @@ window.inputschemas = {
 			"date": "Mon May 18 2015 15:41:47 GMT-0700 (PDT)",
 			"heightIn": 72,
 			"weightLbs": 180,
-			"cpapHrs"
+			"cpapHrs": 4,
 			"dbpMmHg": 120,
 			"sbpMmHg": 80,
-			"heatRateBPM": ,
-			"sleepiness": ,
-			"sleepQuality": ,
-			"arousalCount": 
+			"heatRateBPM": 70,
+			"sleepiness": 10,
+			"sleepQuality": 10,
+			"arousalCount": 10
 		}
 	]
 }

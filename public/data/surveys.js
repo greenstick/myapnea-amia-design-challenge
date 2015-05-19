@@ -1,5 +1,5 @@
 // Attach Survey Schmemas to Window
-window.surveyschemas = [
+window.surveyschema = [
     {
         "title": "About Me",
         "questions": [
