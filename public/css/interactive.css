@@ -5,120 +5,154 @@ Client: MyApnea.org
 File: interactive.css
 */
 
+/*
+Color Palette
+*/
+
+.dark-blue1 {
+	color: rgba(27, 37, 75, 1);
+}
+
+.dark-blue2 {
+	color: rgba(61, 60, 101, 1);
+}
+
+.dark-blue3 {
+	color: rgba(23, 60, 103, 1);
+}
+
+.light-blue {
+	color: rgba(89, 153, 222, 1);
+}
+
+.mustard-yellow {
+	color: rgba(250, 181, 58, 1);
+}
+
+.gold-yellow {
+	color: rgba(255, 164, 0, 1);
+}
+
+.peach-white {
+	color: rgba(255, 241, 217, 1);
+}
+
+.plain-white {
+	color: rgba(255, 255, 255, 1;);
+}
+
+.transparent {
+	color: rgba(255, 255, 255, 0);
+}
+
+.dark-blue1-bg {
+	background-color: rgba(27, 37, 75, 1);
+}
+
+.dark-blue2-bg {
+	background-color: rgba(61, 60, 101, 1);
+}
+
+.dark-blue3-bg {
+	background-color: rgba(23, 60, 103, 1);
+}
+
+.light-blue-bg {
+	background-color: rgba(89, 153, 222, 1);
+}
+
+.mustard-yellow-bg {
+	background-color: rgba(250, 181, 58, 1);
+}
+
+.gold-yellow-bg {
+	background-color: rgba(255, 164, 0, 1);
+}
+
+.peach-white-bg {
+	background-color: rgba(255, 241, 217, 1);
+}
+
+.plain-white-bg {
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.transparent-bg {
+	background-color: rgba(255, 255, 255, 0);
+}
+
 #interactive-wrapper {
 	position: relative;
 	margin: 0px auto 0px auto;
-	height: 560px;
-	width: 768px;
+	width: 1440px;
 	font-family: 'helvetica', 'sans-serif';
 }
 #interactive-wrapper #interactive-header {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 744px;
-	height: 56px;
-	padding: 12px;
-	background-color: grey;
-}
-#interactive-wrapper #interactive-header .tab {
-	position: relative;
-}
-#interactive-wrapper #interactive-navigation {
-	position: absolute;
-	top: 80px;
-	left: 0px;
-	height: 456px;
-	width: 56px;
-	padding: 12px;
-	background-color: lightgrey;
-}
-#interactive-wrapper #interactive-navigation .button {
 	position: relative;
 	top: 0px;
 	left: 0px;
-	height: 8px;
-	width: 56px;
-	padding: 12px 0px;
-	background-color: transparent;
-	transition: all 6s;
-	cursor: pointer;
-	font-size: 8px;
-	text-align: center;
+	width: 1440px;
+	height: 88px;;
 }
-#interactive-wrapper #interactive-navigation .button:hover {
-	background-color: black;
-	color: yellow;
+#interactive-wrapper #interactive-header img {
+	width: 1440px;
 }
 #interactive-wrapper #interactive-modules {
-	position: absolute;
-	top: 80px;
-	left: 80px;
-	width: 664px;
-	height: 416px;
-	padding: 12px;
-	background-color: azure;
+	position: relative;
+	float: left;
+	top: 0px;
+	left: 0px;
+	width: 1146px;
+	height: 1800px;
 }
 #interactive-wrapper #interactive-modules .module {
 	position: relative;
 	float: left;
-	width: 182px;
-	height: 182px;
-	padding: 13px 19px;
+	width: 1146px;
+	height: 600px;
 }
-
-#interactive-wrapper #interactive-modules .module .dial .dialBody {
+#interactive-wrapper #interactive-sidebar {
 	position: relative;
+	float: left;
 	top: 0px;
 	left: 0px;
-	width: 93px;
-	height: 93px;
-	margin: 46px auto;
-	background: transparent;
-	cursor: pointer;
-	z-index: 1000;
+	width: 294px;
+	height: 1800px;
 }
-#interactive-wrapper #interactive-modules .module .dial .dialBody svg g .dialCenter {
-	fill: #ffffff;
-}
-#interactive-wrapper #interactive-modules .module .dial .dialBody .percent {
-	position: absolute;
+#interactive-wrapper #interactive-sidebar .user-info {
+	position: relative;
+	float: right;
 	top: 0px;
 	left: 0px;
-	width: 53px;
-	height: 21px;
-	margin: 35px 41px 35px 21px;
-	padding: 2px 0 0 0;
-	font-size: 16px;
-	text-align: center;
+	width: 289px;
+	height: 600px;
+	box-shadow: -3px -2px 8px #777;
 }
-
+#interactive-wrapper #interactive-sidebar img {
+	position: relative;
+	width: 294px;
+	top: -6px;
+}
+#interactive-wrapper #interactive-sidebar .spacer {
+	position: relative;
+	float: right;
+	top: -10px;
+	left: 0px;
+	width: 289px;
+	height: 600px;
+	box-shadow: -3px 0px 8px #777;
+}
 #interactive-wrapper #interactive-footer {
-	position: absolute;
-	top: 520px;
-	left: 80px;
-	width: 664px;
-	height: 16px;
-	padding: 12px;
-	background-color: grey;
-}
-
-#progress-bar {
 	position: relative;
-	width: 80%;
-	height: 78%;
-	margin: 0% 7%;
+	top: 0px;
+	left: 0px;
+	width: 1440px;
+	height: 224px;
 }
-#progress-bar .bar-container {
-	position: absolute;
-	width: 98%;
-	height: 135%;
-	border-width: 2px;
-	border-color: black;
-}
-#progress-bar .bar-container .bar-value {
-	position: absolute;
-	width: 20%;
-	height: 100%;
-	background-color: azure;
+#interactive-wrapper #interactive-footer img {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	width: 1440px;
+	height: 224px;
 }
