@@ -48,10 +48,13 @@ File: interactive.js
 				I.dials 			= {},
 				I.utilities 		= new Utilities({}),
 				I.generator 		= new Generate({}),
-				I.surveyData 		= I.generator.generateSurveyData(I.surveySchema, 20),
-				I.userData 			= I.generator.generateUserData(20),
-				I.socialData 		= I.generator.generateSocialData(200, 20),
+				I.surveyData 		= I.generator.generateSurveyData(I.surveySchema, 200),
+				I.userData 			= I.generator.generateUserData(200),
+				I.socialData 		= I.generator.generateSocialData(200, 200),
 				I.initDials();
+				console.log(I.surveyData);
+				console.log(I.userData);
+				console.log(I.socialData);
 			return I;
 		},
 

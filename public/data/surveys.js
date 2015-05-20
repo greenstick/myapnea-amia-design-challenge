@@ -5,7 +5,7 @@ window.surveyschema = [
         "questions": [
             {
                 "number": 1,
-                "question": "What if your date of birth?",
+                "question": "What is your date of birth?",
                 "options": [],
                 "multiselect": false,
                 "answer": true,

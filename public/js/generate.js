@@ -75,7 +75,6 @@ Generate.prototype = {
 				surveyData.push(submission);
 			}
 		}
-		console.log(surveyData);
 		return surveyData;
 	},
 
@@ -116,12 +115,13 @@ Generate.prototype = {
 			response["arousalCount"] 	= Math.floor(Math.random() * 4);
 			output.responses.push(response);
 		}
-		console.log(output);
 		return output
 	},
 
 	generateSocialData: function (userCount, maxRecordCount) {
 		var socialData = [];
+
+		return socialData;
 	}
 
 };
