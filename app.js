@@ -3,7 +3,7 @@ var newrelic 	= require('newrelic'),
 	config 		= require('./config/config'),
 	glob 		= require('glob'),
 	mongoose 	= require('mongoose');
-
+	
 // Connect to Database
 mongoose.connect(config.db);
 var db = mongoose.connection;
@@ -25,3 +25,6 @@ require('./config/express')(app, config);
 
 // Listen to Server Port
 app.listen(config.port);
+
+// Log Application Port
+console.log("APPLICATION PORT: " + config.port);

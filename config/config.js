@@ -16,7 +16,7 @@ var config      = {
             app: {
                 name: 'amia-design-challenge'
             },
-            port: 5000,
+            port: process.env.PORT,
             db: 'mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@' + process.env.MONGO_DATABASE
         }
     };
