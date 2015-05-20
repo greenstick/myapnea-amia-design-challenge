@@ -85,42 +85,50 @@ Generate.prototype = {
 				cpap 		: true,
 				responses 	: []
 			},
-		 	date 	= new Date();
+		 	date 	= new Date(),
+		 	seed 	= Math.random();
 		for (var i = 0; i < count; i++) {
-			var response 	= {},
-				bpRandom 	= Math.random();
-			if (bpRandom < 0.5) bpRandom = bpRandom + (Math.random() * 0.5)
-			var bp1 		= Math.floor(bpRandom * 200 * Math.random()),
-				bp2 		= Math.floor(bpRandom * 160 * Math.random()),
-				dpb 		= null,
-				sbp 		= null;
-			if (bp1 < bp2) {
-				dbp = bp1;
-				sbp = bp2;
-			} else {
-				sbp = bp1;
-				dbp = bp2;
-			}
-			rawDate = new Date(Math.floor(date.getTime() - (36500000000 * Math.random())));
-			newDate = rawDate.getFullYear() + "/" + (rawDate.getMonth() + 1) + "/" + rawDate.getDate();
-			response["date"] 			= newDate;
-			response["heightIn"]		= Math.floor(Math.random() * 84);
-			response["weightLbs"] 		= Math.floor(Math.random() * 300);
-			response["cpapHrs"] 		= Math.floor(Math.random() * 8);
-			response["dbpMmHg"] 		= dbp;
-			response["sbpMmHg"]  		= sbp;
-			response["heartRateBPM"] 	= Math.floor(Math.random() * 140);
-			response["sleepiness"] 		= Math.floor(Math.random() * 10);
-			response["sleepQuality"] 	= Math.floor(Math.random() * 10);
-			response["arousalCount"] 	= Math.floor(Math.random() * 4);
+			var rawDate 		= new Date(Math.floor(date.getTime() - (36500000000 * Math.random()))),
+				newDate 		= rawDate.getFullYear() + "/" + (rawDate.getMonth() + 1) + "/" + rawDate.getDate(),
+				bmi 			= ((0.5 + (Math.random() * 0.1) + (seed * 0.4)) * 42).toFixed(2),
+				height 			= Math.floor((0.6 + (seed * 0.4)) * 90), 
+				weight 			= Math.floor(bmi * ((height * height) / 703)),
+				cpapHrs 		= Math.floor(((0.5 + (Math.random() * 0.05) + (seed * 0.2)) * 8)),
+				bpRandom 		= Math.random() * 0.25,
+				sbpRandom 		= 0.75 + bpRandom + (Math.random() * 0.05) + (seed * 0.2),
+				dbpRandom 		= 0.75 + bpRandom - (Math.random() * 0.05) + (seed * 0.2),
+				sbp 			= Math.floor(sbpRandom * 120),
+				dbp 			= Math.floor(dbpRandom * 120),
+				heartRate 		= Math.floor((0.6 + (Math.random() * 0.1) + (seed * 0.3)) * 120),
+				sleepiness 		= Math.floor(((Math.random() * 0.6) + (seed * 0.4)) * 10),
+				sleepQuality	= Math.floor(((Math.random() * 0.6) + (seed * 0.4)) * 10),
+				arousalCount 	= Math.floor(((Math.random() * 0.6) + (seed * 0.4)) * 6),
+				response 		= {
+					date 			: newDate,
+					datetime 		: rawDate,
+					heightIn 		: height,
+					weightLbs 		: weight,
+					cpapHrs 		: cpapHrs,
+					sbpMmHg 		: sbp,
+					dbpMmHg 		: dbp,
+					heartRateBPM 	: heartRate,
+					sleepiness 		: sleepiness,
+					sleepQuality 	: sleepQuality,
+					arousalCount 	: arousalCount
+				};
 			output.responses.push(response);
 		}
 		return output
 	},
 
 	generateSocialData: function (userCount, maxRecordCount) {
-		var socialData = [];
-
+		var G 			= this, 
+			socialData 	= [];
+		for (var i = 0; i < userCount; i++) {
+			var count 	= Math.floor(maxRecordCount * (0.6 + (Math.random() * 4))),
+				user 	= G.generateUserData(count);
+			socialData.push(user);
+		}
 		return socialData;
 	}
 
