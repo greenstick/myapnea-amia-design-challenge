@@ -34,8 +34,10 @@ Generate.prototype = {
 					responses 	: []
 				};
 				for (var k = 0; k < survey.questions.length; k++) {
-					var random 		= Math.random(),
-						index 		= Math.floor(random * survey.questions[k].options.length),
+					var seed 		= Math.random(),
+						index 		= Math.floor(seed * survey.questions[k].options.length),
+						bmi 		= ((0.5 + (Math.random() * 0.1) + (seed * 0.4)) * 42).toFixed(2),
+						height 		= Math.floor((0.6 + (seed * 0.4)) * 90),
 						response 	= {},
 						answer;
 					if (survey.questions[k].validation.hasOwnProperty("type")) {
@@ -45,13 +47,13 @@ Generate.prototype = {
 									return new Date();
 								},
 								Height 		: function () {
-									return Math.random() * 108;
+									return height;
 								},
 								Weight 		: function () {
-									return Math.random() * 400;
+									return Math.floor(bmi * ((height * height) / 703));
 								},
 								Hours 		: function () {
-									return Math.random() * 12;
+									return Math.floor(((0.5 + (Math.random() * 0.05) + (seed * 0.2)) * 8));
 								}
 							},
 							answer 		= answerTypes[value.type](),
