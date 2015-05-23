@@ -86,98 +86,26 @@ Structural / Dimensions CSS
 */
 
 #interactive-wrapper {
-	position: relative;
-	margin: 0px auto 0px auto;
-	width: 1440px;
-	font-family: 'helvetica', 'sans-serif';
-}
-
-/* Header Structure */
-
-#interactive-wrapper #interactive-header {
-	position: relative;
-	top: 0px;
-	left: 0px;
-	width: 1440px;
-	height: 88px;;
-}
-#interactive-wrapper #interactive-header img {
-	width: 1440px;
-}
-#interactive-wrapper #interactive-header a {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 1440px;
-	height: 88px;
+	all: default;
 }
 
 /* Modules Structure */
 
-#interactive-wrapper #interactive-modules {
-	position: relative;
-	float: left;
-	top: 0px;
-	left: 0px;
-	width: 1146px;
-	height: 1800px;
-}
-#interactive-wrapper #interactive-modules .module {
-	position: relative;
-	float: left;
-	width: 1146px;
-	height: 600px;
-}
-
-/* Sidebar Structure */
-
-#interactive-wrapper #interactive-sidebar {
-	position: relative;
-	float: left;
-	top: 0px;
-	left: 0px;
-	width: 294px;
-	height: 1800px;
-}
-#interactive-wrapper #interactive-sidebar .user-info {
-	position: relative;
-	float: right;
-	top: 0px;
-	left: 0px;
-	width: 289px;
-	height: 600px;
-	box-shadow: -3px -2px 8px #777;
-}
-#interactive-wrapper #interactive-sidebar img {
-	position: relative;
-	width: 294px;
-	top: -6px;
-}
-#interactive-wrapper #interactive-sidebar .spacer {
-	position: relative;
-	float: right;
-	top: -10px;
-	left: 0px;
-	width: 289px;
-	height: 600px;
-	box-shadow: -3px 0px 8px #777;
-}
-
-/* Footer Structure */
-
-#interactive-wrapper #interactive-footer {
+#interactive-modules {
 	position: relative;
 	top: 0px;
 	left: 0px;
-	width: 1440px;
-	height: 224px;
+	width: 1010px;
+	height: 1624px;
+	font-family: 'helvetica', 'sans-serif';
 }
-#interactive-wrapper #interactive-footer img {
+#interactive-modules .module {
 	position: relative;
 	top: 0px;
 	left: 0px;
-	width: 1440px;
-	height: 224px;
+	width: 1010px;
+	height: 528px;
+	margin: 0 0 20px 0;
 }
 
 /*
