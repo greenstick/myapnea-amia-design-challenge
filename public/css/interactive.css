@@ -106,26 +106,28 @@ Structural / Dimensions CSS
 	width: 1010px;
 	height: 528px;
 	margin: 0 0 20px 0;
+	border-radius: 16px;
+	background-color: rgba(255, 255, 255, 1);
 }
 
 /*
 Module Styles
 */
 
-/* Input Module */
-
-#interactive-modules .module.inputs {
-
-}
-
-/* Visualization Module */
-
-#interactive-modules .module.visualization {
-	
-}
-
 /* Gamification Module */
 
 #interactive-modules .module.gamification {
 	
+}
+
+/* Visualization Module */
+
+#interactive-modules .module.visualization .graph {
+	
+}
+
+/* Input Module */
+
+#interactive-modules .module.inputs {
+
 }
