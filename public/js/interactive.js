@@ -36,14 +36,16 @@ File: interactive.js
 		//Initialize Interactive
 		init: function (config) {
 			var I = this;
-				I.parent 			= config.parent,		// Below are default values
-				I.element 			= config.element 		|| '#interactive-wrapper',
-				I.navigation		= config.navigation 	|| '#interactive-navigation',
-				I.loader			= config.loader			|| '#interactive-loader',
-				I.moduleParent 		= config.moduleParent 	|| '#interactive-modules',
-				I.moduleElement 	= config.moduleElement 	|| '.module',
-				I.activeState 		= config.activeState 	|| 'default',
-				I.loggedIn 			= config.loggedIn 		|| false,
+				I.parent 			= config.parent,			// Below are default values
+				I.element 			= config.element 			|| '#interactive-wrapper',
+				I.navigation		= config.navigation 		|| '#interactive-navigation',
+				I.loader			= config.loader				|| '#interactive-loader',
+				I.moduleParent 		= config.moduleParent 		|| '#interactive-modules',
+				I.moduleElement 	= config.moduleElement 		|| '.module',
+				I.activeState 		= config.activeState 		|| 'default',
+				I.loggedIn 			= config.loggedIn 			|| false,
+				I.defaultPredictor 	= config.defaultPredictor 	|| "date",
+				I.defaultOutcome 	= config.defaultOutcome 	|| "cpapHrs",
 				I.surveySchema 		= window.surveyschema,
 				I.dials 			= {},
 				I.utilities 		= new Utilities({}),
@@ -58,48 +60,24 @@ File: interactive.js
 			return I;
 		},
 
-		update: function (state) {
-			var I = this;
-				I.activeState 	= state;
-		},
-
 		/*
 		Utility Methods
 		*/
 
-		// Basic AJAX Request Function
-		request: function (args, callback) {
-			var I 				= this,
-				key 			= args.key,
-				type 			= args.type,
-				route 			= args.route,
-				data 			= args.data;
-			$.ajax({
-				type 			: type,
-				url 			: route,
-				dataType		: "json",
-				data 			: data
-			}).done(function (response) {
-				I.data[key] = response;
-				console.log("XHR Notification: Request Success");
-			}).fail(function () {
-				console.log("XHR Notification: Request Fail");
-				console.log(args);
-			}).always(function () {
-				console.log("XHR Notification: Request Complete");
-				if (typeof callback === 'function') callback();
-			});
-		},
+		commaNumbers: function (number) {
+	        var str = number.toString().split('.');
+	        if (str[0].length >= 4) {
+	            str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+	        }; 
+	        if (str[1] && str[1].length >= 5) {
+	            str[1] = str[1].replace(/(\d{3})/g, '$1 ');
+	        };
+	        return str.join('.');
+    	},
 
 		/*
 		User Interface Methods
 		*/
-
-		// Open & Close Navigation
-		toggleNavigation: function () {
-			var I = this;
-			$(I.navigation).toggleClass("active");
-		},
 
 		initDials: function () {
 			var I = this;
@@ -116,14 +94,22 @@ File: interactive.js
 			});
 		},
 
-		updateDials: function (arr) {
+
+
+		updateDials: function (array) {
 			var I = this;
 			$.each('.dials', function (i, e) {
 				var id 		= $(e).attr("id"),
-					random 	= arr[i];
+					random 	= array[i];
 				I.dials[id].update(random);
 			});
-		}
+		},
+
+		/*
+		Graph Methods
+		*/
+
+		
 
 
 	};

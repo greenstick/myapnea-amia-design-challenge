@@ -18,10 +18,60 @@ Generate.prototype = {
 	    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
 	        var r = (d + Math.random()*16)%16 | 0;
 	        d = Math.floor(d/16);
-	        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+	        return (c == 'x' ? r : (r&0x3|0x8)).toString(16);
 	    });
 	    return uuid;
 	},
+
+/*
+
+generateSurveyData - Output Schema
+
+[
+	{
+		"survey": "About Me",
+		"responses": [
+			{
+				"number": 1,
+				"question": "What if your date of birth?",
+				"answer": "10/04/1988",
+				"answerCode": null
+			},
+			{
+				"number": 2,
+				"question": "What is your sex?",
+				"answer": "Male",
+				"answerCode": 1
+			},
+			{
+				"number": 3,
+				"question": "What is your racial background?",
+				"answer": "Some other race or origin (please specify)",
+				"answerCode": 5
+			},
+			{
+				"number": 4,
+				"question": "Are you of Hispanic, Latino, or Spanish origin or ancestry?",
+				"answer": "Unsure",
+				"answerCode": 5
+			},
+			{
+				"number": 5,
+				"question": "What is the highest degree or level of school you have completed?",
+				"answer": "Some college or 2-year degree",
+				"answerCode": 3
+			},
+			{
+				"number": 6,
+				"question": "Last year, what was your total household income from all sources, before taxes?",
+				"answer": "$250,000 and above",
+				"answerCode": 6
+			}
+		]
+	}
+]
+
+*/
 
 	generateSurveyData: function (schema, count) {
 		var surveyData 		= [];
@@ -80,6 +130,30 @@ Generate.prototype = {
 		return surveyData;
 	},
 
+/*
+generateUserData - Output Schema
+
+{
+	"userID": "3c870864-21c9-4716-8280-c204461e317a",
+	"cpap": false,
+	"responses": [
+		{
+			"date": "Mon May 18 2015 15:41:47 GMT-0700 (PDT)",
+			"heightIn": 72,
+			"weightLbs": 180,
+			"cpapHrs": 4,
+			"dbpMmHg": 120,
+			"sbpMmHg": 80,
+			"heatRateBPM": 70,
+			"sleepiness": 10,
+			"sleepQuality": 10,
+			"arousalCount": 10
+		}
+	]
+}
+
+*/
+
 	generateUserData: function (count) {
 		var generator = this,
 			output 	= {
@@ -120,8 +194,35 @@ Generate.prototype = {
 				};
 			output.responses.push(response);
 		}
-		return output
+		return output;
 	},
+
+/*
+
+generateSocialData - Output Schema
+
+[
+	{
+		"userID": "3c870864-21c9-4716-8280-c204461e317a",
+		"cpap": false,
+		"responses": [
+			{
+				"date": "Mon May 18 2015 15:41:47 GMT-0700 (PDT)",
+				"heightIn": 72,
+				"weightLbs": 180,
+				"cpapHrs": 4,
+				"dbpMmHg": 120,
+				"sbpMmHg": 80,
+				"heatRateBPM": 70,
+				"sleepiness": 10,
+				"sleepQuality": 10,
+				"arousalCount": 10
+			}
+		]
+	}
+]
+
+*/
 
 	generateSocialData: function (userCount, maxRecordCount) {
 		var G 			= this, 
@@ -133,5 +234,4 @@ Generate.prototype = {
 		}
 		return socialData;
 	}
-
 };

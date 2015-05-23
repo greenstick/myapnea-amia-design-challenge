@@ -81,12 +81,19 @@ Color Palette
 	background-color: rgba(255, 255, 255, 0);
 }
 
+/*
+Structural / Dimensions CSS
+*/
+
 #interactive-wrapper {
 	position: relative;
 	margin: 0px auto 0px auto;
 	width: 1440px;
 	font-family: 'helvetica', 'sans-serif';
 }
+
+/* Header Structure */
+
 #interactive-wrapper #interactive-header {
 	position: relative;
 	top: 0px;
@@ -104,6 +111,9 @@ Color Palette
 	width: 1440px;
 	height: 88px;
 }
+
+/* Modules Structure */
+
 #interactive-wrapper #interactive-modules {
 	position: relative;
 	float: left;
@@ -118,6 +128,9 @@ Color Palette
 	width: 1146px;
 	height: 600px;
 }
+
+/* Sidebar Structure */
+
 #interactive-wrapper #interactive-sidebar {
 	position: relative;
 	float: left;
@@ -149,6 +162,9 @@ Color Palette
 	height: 600px;
 	box-shadow: -3px 0px 8px #777;
 }
+
+/* Footer Structure */
+
 #interactive-wrapper #interactive-footer {
 	position: relative;
 	top: 0px;
@@ -162,4 +178,26 @@ Color Palette
 	left: 0px;
 	width: 1440px;
 	height: 224px;
+}
+
+/*
+Module Styles
+*/
+
+/* Input Module */
+
+#interactive-modules .module.inputs {
+
+}
+
+/* Visualization Module */
+
+#interactive-modules .module.visualization {
+	
+}
+
+/* Gamification Module */
+
+#interactive-modules .module.gamification {
+	
 }
