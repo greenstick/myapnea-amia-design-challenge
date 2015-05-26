@@ -110,6 +110,27 @@ Structural / Dimensions CSS
 	border-radius: 16px;
 	background-color: rgba(255, 255, 255, 1);
 }
+#interactive-modules .module .header {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 970px;
+	height: 24px;
+	margin: 0 0 20px 0;
+	padding: 20px;
+	border-radius: 16px 16px 0 0;
+	font-size: 32px;
+	color: rgba(255, 255, 255, 1);
+	background-color: rgba(27, 37, 75, 1);
+}
+#interactive-modules .module .body {
+	position: absolute;
+	top: 64px;
+	left: 0px;
+	width: 1010px;
+	height: 464px;
+	margin: 0 0 20px 0;
+}
 
 /*
 Module Styles
@@ -122,56 +143,17 @@ Module Styles
 }
 
 #interactive-modules .module.gamification .star {
-   margin: 100px 26px;
+   margin: 32px 46px;
    position: relative;
    display: block;
    float: left;
-   color: #ffa400;
-   width: 0px;
-   height: 0px;
-   border-right:  100px solid transparent;
-   border-bottom: 70px  solid #ffa400;
-   border-left:   100px solid transparent;
-   -moz-transform:    rotate(35deg);
-   -webkit-transform: rotate(35deg);
-   -ms-transform:     rotate(35deg);
-   -o-transform:      rotate(35deg);
 }
-#interactive-modules .module.gamification .star:before {
-   border-bottom: 80px solid #ffa400;
-   border-left: 30px solid transparent;
-   border-right: 30px solid transparent;
-   position: absolute;
-   height: 0;
-   width: 0;
-   top: -45px;
-   left: -65px;
-   display: block;
-   content: '';
-   -webkit-transform: rotate(-35deg);
-   -moz-transform:    rotate(-35deg);
-   -ms-transform:     rotate(-35deg);
-   -o-transform:      rotate(-35deg);
-
+#interactive-modules .module.gamification .star path {
+	fill: #fff;
 }
-#interactive-modules .module.gamification .star:after {
-   position: absolute;
-   display: block;
-   color: #ffa400;
-   top: 3px;
-   left: -105px;
-   width: 0px;
-   height: 0px;
-   border-right: 100px solid transparent;
-   border-bottom: 70px solid #ffa400;
-   border-left: 100px solid transparent;
-   -webkit-transform: rotate(-70deg);
-   -moz-transform:    rotate(-70deg);
-   -ms-transform:     rotate(-70deg);
-   -o-transform:      rotate(-70deg);
-   content: '';
+#interactive-modules .module.gamification .star.achieved path {
+	fill: #ffa400;
 }
-
 
 /* Visualization Module */
 

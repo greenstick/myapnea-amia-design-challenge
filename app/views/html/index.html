@@ -11,8 +11,8 @@ File: index.html
     <!-- Below we include our meta tags -->
     <meta content="width=device-width" id="interactiveViewport" name=
     "viewport"><!-- Below we include the CSS files -->
-    <link href="css/reset.css" rel="stylesheet" type="text/css">
     <link href="css/myapnea.css" rel="stylesheet" type="text/css">
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
     <link href="css/interactive.css" rel="stylesheet" type="text/css">
 
     <title></title>
@@ -167,41 +167,96 @@ File: index.html
 				<div id="interactive-wrapper">
 					<div id="interactive-modules">
 						<div class="module gamification">
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
-                            <div class="star"></div>
+                            <div class="header">
+                                Awards
+                            </div>
+                            <div class="body">
+                                <svg class="star achieved" version="1.1" width="160" height="152">
+                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
+                                        stroke="#ffa400" 
+                                        stroke-width="1">
+                                    </path>
+                                </svg>
+                                <svg class="star achieved" version="1.1" width="160" height="152">
+                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
+                                        stroke="#ffa400" 
+                                        stroke-width="1">
+                                    </path>
+                                </svg>
+                                <svg class="star" version="1.1" width="160" height="152">
+                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
+                                        stroke="#ffa400" 
+                                        stroke-width="1">
+                                    </path>
+                                </svg>
+                                <svg class="star" version="1.1" width="160" height="152">
+                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
+                                        stroke="#ffa400" 
+                                        stroke-width="1">
+                                    </path>
+                                </svg>
+                                <svg class="star" version="1.1" width="160" height="152">
+                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
+                                        stroke="#ffa400" 
+                                        stroke-width="1">
+                                    </path>
+                                </svg>
+                                <svg class="star" version="1.1" width="160" height="152">
+                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
+                                        stroke="#ffa400" 
+                                        stroke-width="1">
+                                    </path>
+                                </svg>
+                                <svg class="star achieved" version="1.1" width="160" height="152">
+                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
+                                        stroke="#ffa400" 
+                                        stroke-width="1">
+                                    </path>
+                                </svg>
+                                <svg class="star" version="1.1" width="160" height="152">
+                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
+                                        stroke="#ffa400" 
+                                        stroke-width="1">
+                                    </path>
+                                </svg>
+                            </div>
 						</div>
 						<div class="module visualization">
-<!--                             <div class="flipswitch">
-                                <input type="checkbox" name="flipswitch" class="flipswitch-cb" id="fs" checked>
-                                <label class="flipswitch-label" for="fs">
-                                    <div class="flipswitch-inner"></div>
-                                    <div class="flipswitch-switch"></div>
-                                </label>
-                            </div> -->
-                            <select class="dropdown dataSource" data-bind="foreach: dataSources, event:{change: setData.bind($data, event)}">
-                                <option data-bind="value: $data.key, text: $data.name">
-                            </select>
-                            <select class="dropdown timeFilter" data-bind="foreach: timeFilters, event:{change: setTime.bind($data, event)}">
-                                <option data-bind="value: $data.key, text: $data.name">
-                            </select>
-                            <select class="dropdown dataFilterA" data-bind="foreach: dataFiltersA, event:{change: setFilterA.bind($data, event)}">
-                                <option data-bind="value: $data.key, text: $data.name">
-                            </select>
-                            <select class="dropdown dataFilterB" data-bind="foreach: dataFiltersB, event:{change: setFilterB.bind($data, event)}">
-                                <option data-bind="value: $data.key, text: $data.name">
-                            </select>
-							<div class="graph">
+                            <div class="header">
+                                Progress
+                            </div>
+                            <div class="body">
+    <!--                        <div class="flipswitch">
+                                    <input type="checkbox" name="flipswitch" class="flipswitch-cb" id="fs" checked>
+                                    <label class="flipswitch-label" for="fs">
+                                        <div class="flipswitch-inner"></div>
+                                        <div class="flipswitch-switch"></div>
+                                    </label>
+                                </div> -->
+                                <select class="dropdown dataSource" data-bind="foreach: dataSources, event:{change: setData.bind($data, event)}">
+                                    <option data-bind="value: $data.key, text: $data.name">
+                                </select>
+                                <select class="dropdown timeFilter" data-bind="foreach: timeFilters, event:{change: setTime.bind($data, event)}">
+                                    <option data-bind="value: $data.key, text: $data.name">
+                                </select>
+                                <select class="dropdown dataFilterA" data-bind="foreach: dataFiltersA, event:{change: setFilterA.bind($data, event)}">
+                                    <option data-bind="value: $data.key, text: $data.name">
+                                </select>
+                                <select class="dropdown dataFilterB" data-bind="foreach: dataFiltersB, event:{change: setFilterB.bind($data, event)}">
+                                    <option data-bind="value: $data.key, text: $data.name">
+                                </select>
+    							<div class="graph">
 
-							</div>
+    							</div>
+                            </div>
 						</div>
 						<div class="module inputs">
+                            <div class="header">
+                                Update
+                            </div>
+                            <div class="body">
 
+                            </div>
 						</div>
 					</div>
 				</div>
