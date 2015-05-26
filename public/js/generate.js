@@ -137,18 +137,63 @@ generateUserData - Output Schema
 	"userID": "3c870864-21c9-4716-8280-c204461e317a",
 	"cpap": false,
 	"responses": [
-		{
-			"date": "Mon May 18 2015 15:41:47 GMT-0700 (PDT)",
-			"heightIn": 72,
-			"weightLbs": 180,
-			"cpapHrs": 4,
-			"dbpMmHg": 120,
-			"sbpMmHg": 80,
-			"heatRateBPM": 70,
-			"sleepiness": 10,
-			"sleepQuality": 10,
-			"arousalCount": 10
-		}
+		[
+			{
+				key: "date",
+				name: "Date",
+				value: "5 / 18 /2015"
+			},
+			{
+				key: "datetime",
+				name: "Time",
+				value: Mon May 18 2015 15:41:47 GMT-0700 (PDT)
+			},
+			{
+				key: "height",
+				name: "Height (in)",
+				value: 72
+			},
+			{
+				key: "weight",
+				name: "Weight (lbs)",
+				value: 180
+			},
+			{
+				key: "bmi",
+				name: "Body Mass Index (BMI)",
+				value: 25.24
+			},
+			{
+				key: "cpap",
+				name: "CPAP Hours per Night",
+				value: 4
+			},
+			{
+				key: "bloodPressure",
+				name: "Blood Pressure (mm/Hg)",
+				value: 140~120
+			},
+			{
+				key: "heartRate",
+				name: "Heart Rate (BPM)",
+				value: 120
+			},
+			{
+				key: "sleepiness",
+				name: "Daytime Sleepiness",
+				value: 4
+			},
+			{
+				key: "sleepQuality",
+				name: "Sleep Quality",
+				value: 6
+			},
+			{
+				key: "arousalCount",
+				name: "Night Time Arousals",
+				value: 2
+			}
+		]
 	]
 }
 
@@ -166,34 +211,83 @@ generateUserData - Output Schema
 		for (var i = 0; i < count; i++) {
 			var rawDate 		= new Date(Math.floor(date.getTime() - (36500000000 * Math.random()))),
 				newDate 		= rawDate.getFullYear() + "/" + (rawDate.getMonth() + 1) + "/" + rawDate.getDate(),
-				bmi 			= ((0.5 + (Math.random() * 0.1) + (seed * 0.4)) * 42).toFixed(2),
+				bmi 			= Number(((0.5 + (Math.random() * 0.1) + (seed * 0.4)) * 42).toFixed(2)),
 				height 			= Math.floor((0.6 + (seed * 0.4)) * 90), 
 				weight 			= Math.floor(bmi * ((height * height) / 703)),
-				cpapHrs 		= Math.floor(((0.5 + (Math.random() * 0.05) + (seed * 0.2)) * 8)),
+				cpapHrs 		= Math.floor(((0.8 * (seed * 0.5)) + (Math.random() * 0.6)) * 8),
 				bpRandom 		= Math.random() * 0.25,
 				sbpRandom 		= 0.75 + bpRandom + (Math.random() * 0.05) + (seed * 0.2),
 				dbpRandom 		= 0.75 + bpRandom - (Math.random() * 0.05) + (seed * 0.2),
 				sbp 			= Math.floor(sbpRandom * 120),
 				dbp 			= Math.floor(dbpRandom * 120),
+				bloodPressure 	= sbp + "~" + dbp,
 				heartRate 		= Math.floor((0.6 + (Math.random() * 0.1) + (seed * 0.3)) * 120),
-				sleepiness 		= Math.floor(((Math.random() * 0.6) + (seed * 0.4)) * 10),
-				sleepQuality	= Math.floor(((Math.random() * 0.6) + (seed * 0.4)) * 10),
-				arousalCount 	= Math.floor(((Math.random() * 0.6) + (seed * 0.4)) * 6),
-				response 		= {
-					date 			: newDate,
-					datetime 		: rawDate,
-					heightIn 		: height,
-					weightLbs 		: weight,
-					cpapHrs 		: cpapHrs,
-					sbpMmHg 		: sbp,
-					dbpMmHg 		: dbp,
-					heartRateBPM 	: heartRate,
-					sleepiness 		: sleepiness,
-					sleepQuality 	: sleepQuality,
-					arousalCount 	: arousalCount
-				};
+				sleepiness 		= Math.floor(((Math.random() * 0.8) + (seed * 0.2)) * 10),
+				sleepQuality	= Math.floor(((Math.random() * 0.8) + (seed * 0.2)) * 10),
+				arousalCount 	= Math.floor(((Math.random() * 0.8) + (seed * 0.2)) * 6),
+				response 		= [
+					{
+						key: "date",
+						name: "Date",
+						value: newDate
+					},
+					{
+						key: "datetime",
+						name: "Time",
+						value: rawDate
+					},
+					{
+						key: "height",
+						name: "Height (in)",
+						value: height
+					},
+					{
+						key: "weight",
+						name: "Weight (lbs)",
+						value: weight
+					},
+					{
+						key: "bmi",
+						name: "Body Mass Index (BMI)",
+						value: bmi
+					},
+					{
+						key: "cpap",
+						name: "CPAP Hours per Night",
+						value: cpapHrs
+					},
+					{
+						key: "bloodPressure",
+						name: "Blood Pressure (mm/Hg)",
+						value: bloodPressure
+					},
+					{
+						key: "heartRate",
+						name: "Heart Rate (BPM)",
+						value: heartRate
+					},
+					{
+						key: "sleepiness",
+						name: "Daytime Sleepiness",
+						value: sleepiness
+					},
+					{
+						key: "sleepQuality",
+						name: "Sleep Quality",
+						value: sleepQuality
+					},
+					{
+						key: "arousalCount",
+						name: "Night Time Arousals",
+						value: arousalCount
+					}
+				];
 			output.responses.push(response);
 		}
+		output.responses = output.responses.sort(function (a, b) {
+			return new Date (a.datetime) - new Date (b.datetime);
+		});
+		console.log(output);
 		return output;
 	},
 
@@ -206,18 +300,63 @@ generateSocialData - Output Schema
 		"userID": "3c870864-21c9-4716-8280-c204461e317a",
 		"cpap": false,
 		"responses": [
-			{
-				"date": "Mon May 18 2015 15:41:47 GMT-0700 (PDT)",
-				"heightIn": 72,
-				"weightLbs": 180,
-				"cpapHrs": 4,
-				"dbpMmHg": 120,
-				"sbpMmHg": 80,
-				"heatRateBPM": 70,
-				"sleepiness": 10,
-				"sleepQuality": 10,
-				"arousalCount": 10
-			}
+			[
+				{
+					key: "date",
+					name: "Date",
+					value: "5 / 18 /2015"
+				},
+				{
+					key: "datetime",
+					name: "Time",
+					value: Mon May 18 2015 15:41:47 GMT-0700 (PDT)
+				},
+				{
+					key: "height",
+					name: "Height (in)",
+					value: 72
+				},
+				{
+					key: "weight",
+					name: "Weight (lbs)",
+					value: 180
+				},
+				{
+					key: "bmi",
+					name: "Body Mass Index (BMI)",
+					value: 25.24
+				},
+				{
+					key: "cpap",
+					name: "CPAP Hours per Night",
+					value: 4
+				},
+				{
+					key: "bloodPressure",
+					name: "Blood Pressure (mm/Hg)",
+					value: 140~120
+				},
+				{
+					key: "heartRate",
+					name: "Heart Rate (BPM)",
+					value: 120
+				},
+				{
+					key: "sleepiness",
+					name: "Daytime Sleepiness",
+					value: 4
+				},
+				{
+					key: "sleepQuality",
+					name: "Sleep Quality",
+					value: 6
+				},
+				{
+					key: "arousalCount",
+					name: "Night Time Arousals",
+					value: 2
+				}
+			]
 		]
 	}
 ]

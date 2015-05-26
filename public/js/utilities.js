@@ -12,7 +12,7 @@ Utilities.prototype = {
 	},
 
 	// Encode Sting to base64
-	encode64: function (input) {
+	encodeBase64: function (input) {
 		var input 			= escape(input),
 			output 			= "",
 			c1, c2, c3 		= "",
@@ -40,7 +40,7 @@ Utilities.prototype = {
 	},
 
 	// Decode Sting to base64
-	decode64: function (input) {
+	decodeBase64: function (input) {
 		var output 			= "",
 			c1, c2, c3 		= "",
 			e1, e2, e3, e4 	= "",
@@ -64,6 +64,19 @@ Utilities.prototype = {
 			e1 = e2 = e3 = e4 = "";
 		} while (i < input.length);
 		return unescape(output);
+	},
+
+	// Pretty Print Numbers With Commas
+	commaNumbers: function (number) {
+        var str = number.toString().split('.');
+        if (str[0].length >= 4) {
+            str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+        }; 
+        if (str[1] && str[1].length >= 5) {
+            str[1] = str[1].replace(/(\d{3})/g, '$1 ');
+        };
+        return str.join('.');
 	}
+
 
 };

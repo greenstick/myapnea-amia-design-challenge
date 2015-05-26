@@ -167,9 +167,35 @@ File: index.html
 				<div id="interactive-wrapper">
 					<div id="interactive-modules">
 						<div class="module gamification">
-
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
+                            <div class="star"></div>
 						</div>
 						<div class="module visualization">
+<!--                             <div class="flipswitch">
+                                <input type="checkbox" name="flipswitch" class="flipswitch-cb" id="fs" checked>
+                                <label class="flipswitch-label" for="fs">
+                                    <div class="flipswitch-inner"></div>
+                                    <div class="flipswitch-switch"></div>
+                                </label>
+                            </div> -->
+                            <select class="dropdown dataSource" data-bind="foreach: dataSources, event:{change: setData.bind($data, event)}">
+                                <option data-bind="value: $data.key, text: $data.name">
+                            </select>
+                            <select class="dropdown timeFilter" data-bind="foreach: timeFilters, event:{change: setTime.bind($data, event)}">
+                                <option data-bind="value: $data.key, text: $data.name">
+                            </select>
+                            <select class="dropdown dataFilterA" data-bind="foreach: dataFiltersA, event:{change: setFilterA.bind($data, event)}">
+                                <option data-bind="value: $data.key, text: $data.name">
+                            </select>
+                            <select class="dropdown dataFilterB" data-bind="foreach: dataFiltersB, event:{change: setFilterB.bind($data, event)}">
+                                <option data-bind="value: $data.key, text: $data.name">
+                            </select>
 							<div class="graph">
 
 							</div>
@@ -493,18 +519,25 @@ File: index.html
         </div>
 
         <div id="DIV_365"></div>
-        <!-- Below we include the JavaScript files we'll need -->
+<!-- Below we include the JavaScript files we'll need -->
         <!-- jQuery library. See documentation: http://api.jquery.com -->
         <script src="js/lib/jquery.min.js" type="application/javascript"></script> 
-<!-- Knockout.js library. See documentation: http://knockoutjs.com/documentation/introduction.html -->
-         <script src="js/lib/ko.min.js" type="application/javascript"></script> 
-<!-- D3 library. See documentation: https://github.com/mbostock/d3/wiki -->
-         <script src="js/lib/d3.min.js" type="application/javascript"></script> <!-- Utilities -->
-         <script src="js/utilities.js" type="application/javascript"></script> <!-- Dial Script. . .Why not? -->
-         <script src="js/dial.js" type="application/javascript"></script> <!-- Script Attaches Survey Schemas to Window Object -->
-         <script src="data/surveys.js" type="application/javascript"></script> <!-- Include Data Generation Module -->
-         <script src="js/generate.js" type="application/javascript"></script> <!-- And finally, our own interactive.js file -->
-         <script src="js/interactive.js" type="application/javascript"></script>
+        <!-- Knockout.js library. See documentation: http://knockoutjs.com/documentation/introduction.html -->
+        <script src="js/lib/ko.min.js" type="application/javascript"></script> 
+        <!-- D3 library. See documentation: https://github.com/mbostock/d3/wiki -->
+        <script src="js/lib/d3.min.js" type="application/javascript"></script>
+        <!-- Utilities -->
+        <script src="js/utilities.js" type="application/javascript"></script>
+        <!-- Dial Script. . .Why not? -->
+        <script src="js/dial.js" type="application/javascript"></script>
+        <!-- Script Attaches Survey Schemas to Window Object -->
+        <script src="data/surveys.js" type="application/javascript"></script>
+        <!-- Include Data Generation Module -->
+        <script src="js/generate.js" type="application/javascript"></script>
+        <!-- Include D3 Scatterplot -->
+        <script src="js/scatterplot.js" type="application/javascript"></script>
+        <!-- And finally, our own interactive.js file -->
+        <script src="js/interactive.js" type="application/javascript"></script>
     </div>
 </body>
 </html>

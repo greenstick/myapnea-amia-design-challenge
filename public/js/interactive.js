@@ -36,45 +36,42 @@ File: interactive.js
 		//Initialize Interactive
 		init: function (config) {
 			var I = this;
-				I.parent 			= config.parent,			// Below are default values
-				I.element 			= config.element 			|| '#interactive-wrapper',
-				I.navigation		= config.navigation 		|| '#interactive-navigation',
-				I.loader			= config.loader				|| '#interactive-loader',
-				I.moduleParent 		= config.moduleParent 		|| '#interactive-modules',
-				I.moduleElement 	= config.moduleElement 		|| '.module',
-				I.activeState 		= config.activeState 		|| 'default',
-				I.loggedIn 			= config.loggedIn 			|| false,
-				I.defaultPredictor 	= config.defaultPredictor 	|| "date",
-				I.defaultOutcome 	= config.defaultOutcome 	|| "cpapHrs",
-				I.surveySchema 		= window.surveyschema,
+				// General Config Vars
+				I.parent 			= config.parent,					// Below are default values
+				I.element 			= config.element 					|| '#interactive-wrapper',
+				I.navigation		= config.navigation 				|| '#interactive-navigation',
+				I.loader			= config.loader						|| '#interactive-loader',
+				I.moduleParent 		= config.moduleParent 				|| '#interactive-modules',
+				I.moduleElement 	= config.moduleElement 				|| '.module',
+				I.activeState 		= config.activeState 				|| 'default',
+				I.loggedIn 			= config.loggedIn 					|| false,
+				I.graphConfig 		= config.graphConfig,
+				I.surveySchema 		= window.surveySchema,
 				I.dials 			= {},
-				I.utilities 		= new Utilities({}),
-				I.generator 		= new Generate({}),
-				I.surveyData 		= I.generator.generateSurveyData(I.surveySchema, 200),
-				I.userData 			= I.generator.generateUserData(200),
-				I.socialData 		= I.generator.generateSocialData(200, 200),
+				I.graph,
+				// View Model Vars
+				I.dataSources 		= ko.observable(config.dataSources),
+				I.timeFilters 		= ko.observable(config.timeFilters),
+				I.dataFiltersA 		= ko.observable(config.dataFiltersA),
+				I.dataFiltersB 		= ko.observable(config.dataFiltersB),
+				I.selectedData 		= ko.observable(config.dataSources[0].key),
+				I.selectedTime 		= ko.observable(config.timeFilters[0].key),
+				I.selectedFilterA 	= ko.observable(config.dataFiltersA[0].key),
+				I.selectedFilterB 	= ko.observable(config.dataFiltersB[0].key),
+				// Bind Child Prototypes
+				I.utils 			= new Utilities({}),
+				I.gen 				= new Generate({}),
+				// Generate Data
+				I.surveyData 		= I.gen.generateSurveyData(I.surveySchema, 20),
+				I.userData 			= I.gen.generateUserData(20),
+				// I.socialData 		= I.gen.generateSocialData(20, 20),
 				I.initDials();
-				console.log(I.surveyData);
-				console.log(I.userData);
-				console.log(I.socialData);
+				// console.log(I.surveyData);
+				// console.log(I.userData);
+				// console.log(I.socialData);
 			return I;
 		},
-
-		/*
-		Utility Methods
-		*/
-
-		commaNumbers: function (number) {
-	        var str = number.toString().split('.');
-	        if (str[0].length >= 4) {
-	            str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
-	        }; 
-	        if (str[1] && str[1].length >= 5) {
-	            str[1] = str[1].replace(/(\d{3})/g, '$1 ');
-	        };
-	        return str.join('.');
-    	},
-
+		
 		/*
 		User Interface Methods
 		*/
@@ -106,18 +103,132 @@ File: interactive.js
 		},
 
 		/*
+		Bindings
+		*/
+
+		setData: function (event, data) {
+			var I = this;
+			I.selectedData(event.target.value);
+			I.genScatterPlot();
+		},
+
+		setTime: function (event, data) {
+			var I = this;
+			I.selectedTime(event.target.value);
+			I.genScatterPlot();
+		},
+
+		setFilterA: function (event, data) {
+			var I = this;
+			I.selectedFilterA(event.target.value);
+			I.genScatterPlot();
+		},
+
+		setFilterB: function (event, data) {
+			var I = this;
+			I.selectedFilterB(event.target.value);
+			I.genScatterPlot();
+		},
+
+		/*
 		Graph Methods
 		*/
 
-		
+		genScatterPlot: function () {
+			var I = this,
+				type = {
+					userData: function () {
+						var data = [];
+						for (var i = 0; i < I.userData.responses.length; i++) {
+							var responseSet = I.userData.responses[i], x, y1, y2, userData = {};
+							for (var j = 0; j < responseSet.length; j++) {
+								var response = responseSet[j];
+								if (response.key === I.selectedTime()) 		userData["x"] 		= response.value;
+								if (response.key === I.selectedFilterA()) 	userData["y1"] 		= response.value;
+								if (response.key === I.selectedFilterB()) 	userData["y2"] 		= response.value;
+								if (response.key === "datetime") 			userData["date"] 	= response.value;
+								data.push(userData);
+							}
+						}
+						console.log(data);
+						I.graph = new Scatterplot(I.graphConfig, data);
+						return I.graph;
+					},
+					socialData: function () {
+						var data = [];
+						for (var i = 0; i < I.socialData.length; i++) {
+							var user = I.socialData[i], userData = {};
+							for (var j = 0; j < user.responses.length; j++) {
+								var responseSet = user.responses[j], x, y1, y2;
+								for (var k = 0; k < responseSet.length; k++) {
+									var response = responseSet[k];
+									if (response.key === I.selectedTime()) 		userData["x"] 		= response.value;
+									if (response.key === I.selectedFilterA()) 	userData["y1"] 		= response.value;
+									if (response.key === I.selectedFilterB()) 	userData["y2"] 		= response.value;
+									if (response.key === "datetime") 			userData["date"] 	= response.value;
+									data.push(userData);
+								}
+							}
+						}
+						data = data.sort(function (a, b) {
+							return new Date(a.date) - new Date (b.date);
+						});
+						for (var i = 0; i < data.length; i++) {
+
+						}
+						I.graph = new Scatterplot(I.graphConfig, data);
+						return I.graph;
+					},
+					surveyData: function () {
+						var data = [];
+						for (var i = 0; i < I.surveyData.length; i++) {
+							var x 	= I.surveyData[i].responses[I.selectedTime()],
+								y1 	= I.surveyData[i].responses[I.selectedFilterA()],
+								y2 	= I.surveyData[i].responses[I.selectedFilterB()],
+								arr = [x, y1, y2];
+								data.push(arr);
+						}
+						I.graph = new Scatterplot(I.graphConfig, data);
+						return I.graph;
+					}
+				};
+			// try {
+				type[I.selectedData()]();
+			// } catch (e) {
+				console.log("Error Rendering Plot!");
+				console.log("Data: " + I.selectedData());
+				console.log("Time: " + I.selectedTime());
+				console.log("FilterA: " + I.selectedFilterA());
+				console.log("FilterB: " + I.selectedFilterB())
+				// return I.graph;
+			// }
+		}
 
 
 	};
 
 var config = {
-	parent: 'body'
+	parent 			: 'body',
+	dataSources 	: [{key: "userData", name: "My Data"}, {key: "socialData", name: "Our Data"}],
+	timeFilters 	: [{key: "cpap", name: "CPAP Hours per Night"}, {key: "date", name: "Date"}],
+	dataFiltersA 	: [{key: "sleepQuality", name: "Sleep Quality"}, {key: "height", name: "Height (in)"}, {key: "weight", name: "Weight (lbs)"}, {key: "bmi", name: "Body Mass Index (BMI)"}, {key: "bloodPressure", name: "Blood Pressure (mm/Hg)"}, {key: "heartRate", name: "Heart Rate (BPM)"}, {key: "sleepiness", name: "Daytime Sleepiness"}, {key: "arousalCount", name: "Night Time Arousals"}],
+	dataFiltersB 	: [{key: "sleepQuality", name: "Sleep Quality"}, {key: "height", name: "Height (in)"}, {key: "weight", name: "Weight (lbs)"}, {key: "bmi", name: "Body Mass Index (BMI)"}, {key: "bloodPressure", name: "Blood Pressure (mm/Hg)"}, {key: "heartRate", name: "Heart Rate (BPM)"}, {key: "sleepiness", name: "Daytime Sleepiness"}, {key: "arousalCount", name: "Night Time Arousals"}],
+	graphConfig 	: {
+		parent 			: ".module.visualization",
+		target 			: ".graph",
+		width 			: 560,
+		height 			: 488,
+		margin 			: {
+			top 			: 20,
+			right 			: 20,
+			bottom 			: 20,
+			left 			: 20
+		}
+	}
 };
 
 var interactive = new Interactive(config);
+	interactive.genScatterPlot();
+	ko.applyBindings(interactive, document.querySelector(".visualization"));
 
 // }(jQuery, ko, d3))
