@@ -64,7 +64,7 @@ File: interactive.js
 				// Generate Data
 				I.surveyData 		= I.gen.generateSurveyData(I.surveySchema, 20),
 				I.userData 			= I.gen.generateUserData(20),
-				// I.socialData 		= I.gen.generateSocialData(20, 20),
+				I.socialData 		= I.gen.generateSocialData(20, 20),
 				I.initDials();
 				// console.log(I.surveyData);
 				// console.log(I.userData);
@@ -156,6 +156,7 @@ File: interactive.js
 					},
 					socialData: function () {
 						var data = [];
+						console.log(I.socialData);
 						for (var i = 0; i < I.socialData.length; i++) {
 							var user = I.socialData[i], userData = {};
 							for (var j = 0; j < user.responses.length; j++) {
@@ -173,9 +174,10 @@ File: interactive.js
 						data = data.sort(function (a, b) {
 							return new Date(a.date) - new Date (b.date);
 						});
-						for (var i = 0; i < data.length; i++) {
-
-						}
+						console.log("meow")
+						// for (var i = 0; i < data.length; i++) {
+						// 	console.log(data[i]);
+						// }
 						I.graph = new Scatterplot(I.graphConfig, data);
 						return I.graph;
 					},

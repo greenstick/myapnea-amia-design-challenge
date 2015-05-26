@@ -287,7 +287,6 @@ generateUserData - Output Schema
 		output.responses = output.responses.sort(function (a, b) {
 			return new Date (a.datetime) - new Date (b.datetime);
 		});
-		console.log(output);
 		return output;
 	},
 
@@ -367,7 +366,7 @@ generateSocialData - Output Schema
 		var G 			= this, 
 			socialData 	= [];
 		for (var i = 0; i < userCount; i++) {
-			var count 	= Math.floor(maxRecordCount * (0.6 + (Math.random() * 4))),
+			var count 	= Math.floor(maxRecordCount * Math.random()),
 				user 	= G.generateUserData(count);
 			socialData.push(user);
 		}
