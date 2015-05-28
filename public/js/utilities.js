@@ -78,5 +78,4 @@ Utilities.prototype = {
         return str.join('.');
 	}
 
-
 };

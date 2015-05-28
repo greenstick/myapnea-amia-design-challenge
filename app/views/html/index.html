@@ -1,6 +1,7 @@
 <!--
 Project: AMIA Student Design Challenge
 Team Institution: Oregon Health & Science University
+Submission Team: Choi, A., Cordier, B., Das, P., Li, J.
 Client: MyApnea.org
 File: index.html
 -->
@@ -8,14 +9,12 @@ File: index.html
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Below we include our meta tags -->
-    <meta content="width=device-width" id="interactiveViewport" name=
-    "viewport"><!-- Below we include the CSS files -->
+    <!-- Meta tags -->
+    <meta content="width=device-width" id="interactiveViewport" name="viewport">
+    <!-- CSS files -->
     <link href="css/myapnea.css" rel="stylesheet" type="text/css">
-    <link href="css/reset.css" rel="stylesheet" type="text/css">
     <link href="css/interactive.css" rel="stylesheet" type="text/css">
-
-    <title></title>
+    <title>MyApnea Dashboard Prototype - AMIA Design Challenge Submission</title>
 </head>
 <body>
     <div id="DIV_2"></div>
@@ -168,7 +167,7 @@ File: index.html
 					<div id="interactive-modules">
 						<div class="module gamification">
                             <div class="header">
-                                Awards
+                                Medals
                             </div>
                             <div class="body">
                                 <svg class="star achieved" version="1.1" width="160" height="152">
@@ -233,21 +232,19 @@ File: index.html
                                         <div class="flipswitch-switch"></div>
                                     </label>
                                 </div> -->
-                                <select class="dropdown dataSource" data-bind="foreach: dataSources, event:{change: setData.bind($data, event)}">
+                                <select class="dropdown dataSource" data-bind="foreach: dataSources, event:{change: setData.bind($data, event) }">
                                     <option data-bind="value: $data.key, text: $data.name">
                                 </select>
-                                <select class="dropdown timeFilter" data-bind="foreach: timeFilters, event:{change: setTime.bind($data, event)}">
+                                <select class="dropdown timeFilter" data-bind="foreach: timeFilters, event:{change: setTime.bind($data, event) }">
                                     <option data-bind="value: $data.key, text: $data.name">
                                 </select>
-                                <select class="dropdown dataFilterA" data-bind="foreach: dataFiltersA, event:{change: setFilterA.bind($data, event)}">
+                                <select class="dropdown dataFilterA" data-bind="foreach: dataFiltersA, event:{change: setFilterA.bind($data, event) }">
                                     <option data-bind="value: $data.key, text: $data.name">
                                 </select>
-                                <select class="dropdown dataFilterB" data-bind="foreach: dataFiltersB, event:{change: setFilterB.bind($data, event)}">
+                                <select class="dropdown dataFilterB" data-bind="foreach: dataFiltersB, event:{change: setFilterB.bind($data, event) }">
                                     <option data-bind="value: $data.key, text: $data.name">
                                 </select>
-    							<div class="graph">
-
-    							</div>
+    							<div class="graph"></div>
                             </div>
 						</div>
 						<div class="module inputs">
@@ -583,14 +580,14 @@ File: index.html
         <script src="js/lib/d3.min.js" type="application/javascript"></script>
         <!-- Utilities -->
         <script src="js/utilities.js" type="application/javascript"></script>
-        <!-- Dial Script. . .Why not? -->
-        <script src="js/dial.js" type="application/javascript"></script>
         <!-- Script Attaches Survey Schemas to Window Object -->
         <script src="data/surveys.js" type="application/javascript"></script>
         <!-- Include Data Generation Module -->
         <script src="js/generate.js" type="application/javascript"></script>
         <!-- Include D3 Scatterplot -->
         <script src="js/scatterplot.js" type="application/javascript"></script>
+        <!-- Include D3 Lineplot -->
+        <script src="js/lineplot.js" type="application/javascript"></script>
         <!-- And finally, our own interactive.js file -->
         <script src="js/interactive.js" type="application/javascript"></script>
     </div>
