@@ -48,6 +48,7 @@ File: interactive.js
 				I.loggedIn 			= config.loggedIn 					|| false,
 				I.graphConfig 		= config.graphConfig,
 				I.surveySchema 		= window.surveySchema,
+				I.badgeSchema 		= window.badgeSchema,
 				I.dials 			= {},
 				I.graph,
 				I.activeData,
@@ -60,6 +61,8 @@ File: interactive.js
 				I.selectedTime 		= ko.observable(config.timeFilters[0].key),
 				I.selectedFilterA 	= ko.observable(config.dataFiltersA[0].key),
 				I.selectedFilterB 	= ko.observable(config.dataFiltersB[0].key),
+				I.badges 			= ko.observableArray(I.badgeSchema),
+				I.hoveredBadge 		= ko.observable(I.badgeSchema[0])
 				// Bind Child Prototypes
 				I.utils 			= new Utilities({}),
 				I.gen 				= new Generate({}),
@@ -70,6 +73,7 @@ File: interactive.js
 				// console.log(I.surveyData);
 				// console.log(I.userData);
 				// console.log(I.socialData);
+				console.log(I.badges());
 			return I;
 		},
 		
@@ -283,6 +287,11 @@ File: interactive.js
 
 		updatePlotY: function (key, filterA) {
 
+		},
+
+		hoverBadge: function (data) {
+			var I = this;
+			I.hoveredBadge(data);
 		}
 
 	};
@@ -400,6 +409,6 @@ var config = {
 
 var interactive = new Interactive(config);
 	interactive.genLinePlot();
-	ko.applyBindings(interactive, document.querySelector(".visualization"));
+	ko.applyBindings(interactive, document.getElementById("interactive-wrapper"));
 
 // }(jQuery, ko, d3))

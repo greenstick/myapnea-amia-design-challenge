@@ -13,6 +13,7 @@ File: index.html
     <meta content="width=device-width" id="interactiveViewport" name="viewport">
     <!-- CSS files -->
     <link href="css/myapnea.css" rel="stylesheet" type="text/css">
+    <link href="css/nvd3.css" rel="stylesheet" type="text/css">
     <link href="css/interactive.css" rel="stylesheet" type="text/css">
     <title>MyApnea Dashboard Prototype - AMIA Design Challenge Submission</title>
 </head>
@@ -165,61 +166,6 @@ File: index.html
 
 				<div id="interactive-wrapper">
 					<div id="interactive-modules">
-						<div class="module gamification">
-                            <div class="header">
-                                Medals
-                            </div>
-                            <div class="body">
-                                <svg class="star achieved" version="1.1" width="160" height="152">
-                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
-                                        stroke="#ffa400" 
-                                        stroke-width="1">
-                                    </path>
-                                </svg>
-                                <svg class="star achieved" version="1.1" width="160" height="152">
-                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
-                                        stroke="#ffa400" 
-                                        stroke-width="1">
-                                    </path>
-                                </svg>
-                                <svg class="star" version="1.1" width="160" height="152">
-                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
-                                        stroke="#ffa400" 
-                                        stroke-width="1">
-                                    </path>
-                                </svg>
-                                <svg class="star" version="1.1" width="160" height="152">
-                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
-                                        stroke="#ffa400" 
-                                        stroke-width="1">
-                                    </path>
-                                </svg>
-                                <svg class="star" version="1.1" width="160" height="152">
-                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
-                                        stroke="#ffa400" 
-                                        stroke-width="1">
-                                    </path>
-                                </svg>
-                                <svg class="star" version="1.1" width="160" height="152">
-                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
-                                        stroke="#ffa400" 
-                                        stroke-width="1">
-                                    </path>
-                                </svg>
-                                <svg class="star achieved" version="1.1" width="160" height="152">
-                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
-                                        stroke="#ffa400" 
-                                        stroke-width="1">
-                                    </path>
-                                </svg>
-                                <svg class="star" version="1.1" width="160" height="152">
-                                    <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000"
-                                        stroke="#ffa400" 
-                                        stroke-width="1">
-                                    </path>
-                                </svg>
-                            </div>
-						</div>
 						<div class="module visualization">
                             <div class="header">
                                 Progress
@@ -252,9 +198,83 @@ File: index.html
                                 Update
                             </div>
                             <div class="body">
-
+                                <form senctype="multipart/form-data">
+                                    <div class="form-field">
+                                        <div class="explanation">
+                                            What is your weight today?
+                                        </div>
+                                        <input id="weight-input" type="text" class="input-field" placeholder="Weight (lbs)" />
+                                    </div>
+                                    <div class="form-field">
+                                        <div class="explanation">
+                                            If you have a CPAP, for how many hours did you use it last night?
+                                        </div>
+                                        <input id="cpap-input" type="text" class="input-field" placeholder="CPAP Hours per Night" />
+                                    </div>
+                                    <div class="form-field">
+                                        <div class="explanation">
+                                            What is your systolic blood pressure today (the higher number)?
+                                        </div>
+                                        <input id="sbp-input" type="text" class="input-field" placeholder="Systolic Blood Pressure (mm/Hg)" />
+                                    </div>
+                                    <div class="form-field">
+                                        <div class="explanation">
+                                            What is your diastolic blood pressur today (the lower number)?
+                                        </div>
+                                        <input id="dbp-input" type="text" class="input-field" placeholder="Diastolic Blood Pressure (mm/Hg)" />
+                                    </div>
+                                    <div class="form-field">
+                                        <div class="explanation">
+                                            What is your resting heart rate today?
+                                        </div>
+                                        <input id="heartrate-input" type="text" class="input-field" placeholder="Heart Rate (BPM)" />
+                                    </div>
+                                    <div class="form-field">
+                                        <div class="explanation">
+                                            How sleepy are you feeling today?
+                                        </div>
+                                        <input id="sleepiness-input" type="text" class="input-field" placeholder="Daytime Sleepiness" />
+                                    </div>
+                                    <div class="form-field">
+                                        <div class="explanation">
+                                            How would you rate the quality of your sleep last night?
+                                        </div>
+                                        <input id="sleepquality-input" type="text" class="input-field" placeholder="Sleep Quality" />
+                                    </div>
+                                    <div class="form-field">
+                                        <div class="explanation">
+                                            How many night time arousals did you experience last night?
+                                        </div>
+                                        <input id="arousalcount-input" type="text" class="input-field" placeholder="Night Time Arousals" />
+                                    </div>
+                                     <input id="create-submission" type="submit" value="Submit">
+                                </form>
                             </div>
 						</div>
+                        <div class="module gamification">
+                            <div class="header">
+                                Medals
+                            </div>
+                            <div class="body">
+                                <div class="stars" data-bind="foreach: badges">
+                                    <div class="star" data-bind="event: {mouseover: function () { return $parent.hoverBadge($data)}}, css: {achieved: achieved === true, gold: level === 'gold', silver: level === 'silver', bronze: level === 'bronze'}">
+                                        <svg version="1.1" width="160" height="152">
+                                            <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000" 
+                                                stroke-width="1">
+                                            </path>
+                                        </svg>
+                                        <div class="badge-name" data-bind="text: name">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tooltip light-blue-bg">
+                                    <div class="tt-header" data-bind="text: hoveredBadge().name, css: {achieved: hoveredBadge().achieved === true, gold: hoveredBadge().level === 'gold', silver: hoveredBadge().level === 'silver', bronze: hoveredBadge().level === 'bronze'}"></div>
+                                    <div class="tt-how" data-bind="text: hoveredBadge().achievement"></div>
+                                    <div class="tt-explanation" data-bind="text: hoveredBadge().explanation"></div>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 
@@ -578,10 +598,14 @@ File: index.html
         <script src="js/lib/ko.min.js" type="application/javascript"></script> 
         <!-- D3 library. See documentation: https://github.com/mbostock/d3/wiki -->
         <script src="js/lib/d3.min.js" type="application/javascript"></script>
+        <!-- NVD3 Library - Reusable Charts & Things-->
+        <script src="js/lib/nvd3.min.js" type="application/javascript"></script>
         <!-- Utilities -->
         <script src="js/utilities.js" type="application/javascript"></script>
         <!-- Script Attaches Survey Schemas to Window Object -->
         <script src="data/surveys.js" type="application/javascript"></script>
+        <!-- Script Attaches Survey Schemas to Window Object -->
+        <script src="data/badges.js" type="application/javascript"></script>
         <!-- Include Data Generation Module -->
         <script src="js/generate.js" type="application/javascript"></script>
         <!-- Include D3 Scatterplot -->

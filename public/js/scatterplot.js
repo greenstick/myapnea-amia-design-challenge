@@ -41,15 +41,15 @@ Scatterplot.prototype = {
 
 			// Append Circles
 
-			// SP.points 		= SP.group.selectAll("dots")
-			// 					.data(SP.data).enter().append("circle")
-			// 					.attr("cx", function (d) { return d.x * 50 })
-			// 					.attr("cy", function (d) { return d.y1 * 50 })
-			// 					.attr("r", 4)
-			// 					.attr("opacity", 0.8)
-			// 					.attr("stroke", "black")
-			// 					.attr("stroke-width","1")
-			// 					.attr("fill", "black");
+			SP.points 		= SP.group.selectAll("dots")
+								.data(SP.data).enter().append("circle")
+								.attr("cx", function (d) { return d.x * 50 })
+								.attr("cy", function (d) { return d.y1 * 50 })
+								.attr("r", 4)
+								.attr("opacity", 0.8)
+								.attr("stroke", "black")
+								.attr("stroke-width","1")
+								.attr("fill", "black");
 	},
 
 	update: function (data) {

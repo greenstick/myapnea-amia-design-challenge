@@ -73,7 +73,7 @@ Color Palette
 	background-color: rgba(250, 181, 58, 1);
 }
 
-.#ffa400-yellow-bg {
+.gold-yellow-bg {
 	background-color: rgba(255, 164, 0, 1);
 }
 
@@ -147,21 +147,93 @@ Gamification Module
 */
 
 #interactive-modules .module.gamification {
-	
+	overflow: hidden;
+}
+#interactive-modules .module.gamification .stars {
+	position: absolute;
+	width: 762px;
+	height: 464px;
+	overflow-y: auto;
+}
+#interactive-modules .module.gamification .tooltip {
+	position: absolute;
+	width: 208px;
+	height: 424px;
+	padding: 20px;
+	top: 0px;
+	right: 0px;
+	color: rgba(255, 255, 255, 1);
+}
+#interactive-modules .module.gamification .tooltip .tt-header {
+	position: relative;
+	font-size: 16px;
+	margin: 0 0 16px 0;
+}
+#interactive-modules .module.gamification .tooltip .tt-header.achieved.gold {
+	color: rgba(255, 164, 0, 1);
+}
+#interactive-modules .module.gamification .tooltip .tt-header.achieved.silver {
+	color: rgba(192, 192, 192, 1);
+}
+#interactive-modules .module.gamification .tooltip .tt-header.achieved.bronze {
+	color: rgba(140, 120, 83, 1);
+}
+#interactive-modules .module.gamification .tooltip .tt-how {
+	position: relative;
+	font-size: 16px;
+	margin: 0 0 16px 0;
+}
+#interactive-modules .module.gamification .tooltip .tt-explanation{
+	position: relative;
+	font-size: 16px;
+	margin: 0 0 16px 0;
+}
+#interactive-modules .module.gamification .stars .star {
+	position: relative;
+	float: left;
+	margin: 32px 46px 12px;
+    height: 172px;
+    width: 160px;
+}
+#interactive-modules .module.gamification .stars .star svg {
+   position: relative;
+   height: 152px;
+   width: 160px;
+   display: block;
+   cursor: pointer;
+}
+#interactive-modules .module.gamification .stars .star .badge-name {
+	position: relative;
+	height: 20px;
+	width: 160px;
+	text-align: center;
+	color: rgba(27, 37, 75, 1);
+}
+#interactive-modules .module.gamification .stars .star.gold svg path {
+	fill: rgba(255, 164, 0, 0.1);
+	stroke: rgba(255, 164, 0, 1);
+}
+#interactive-modules .module.gamification .stars .star.achieved.gold svg path {
+	fill: rgba(255, 164, 0, 1);
+	stroke: rgba(255, 164, 0, 1);
+}
+#interactive-modules .module.gamification .stars .star.silver svg path {
+	fill: rgba(192, 192, 192, 0.1);
+	stroke: rgba(192, 192, 192, 1);
+}
+#interactive-modules .module.gamification .stars .star.achieved.silver svg path {
+	fill: rgba(192, 192, 192, 1);
+	stroke: rgba(192, 192, 192, 1);
+}
+#interactive-modules .module.gamification .stars .star.bronze svg path {
+	fill: rgba(140, 120, 83, 0.1);
+	stroke: rgba(140, 120, 83, 1);
+}
+#interactive-modules .module.gamification .stars .star.achieved.bronze svg path {
+	fill: rgba(140, 120, 83, 1);
+	stroke: rgba(140, 120, 83, 1);
 }
 
-#interactive-modules .module.gamification .star {
-   margin: 32px 46px;
-   position: relative;
-   display: block;
-   float: left;
-}
-#interactive-modules .module.gamification .star path {
-	fill: #fff;
-}
-#interactive-modules .module.gamification .star.achieved path {
-	fill: #ffa400;
-}
 
 /* 
 Visualization Module
@@ -272,3 +344,46 @@ Input Module
 #interactive-modules .module.inputs {
 
 }
+#interactive-modules .module.inputs form {
+	width: 970px;
+	height: 424px;
+	margin: 20px;
+}
+#interactive-modules .module.inputs form .form-field {
+	position: relative;
+	width: 485px;
+	height: 92px;
+	float: left;
+}
+#interactive-modules .module.inputs form .form-field .explanation {
+	position: relative;
+	width: 505px;
+	height: 22px;
+	margin: 20px 0 8px 0;
+	color: rgba(27, 37, 75, 1);
+}
+#interactive-modules .module.inputs form .form-field .input-field {
+	width: 248px;
+	height: 28px;
+	padding: 0 12px;
+}
+#interactive-modules .module.inputs form #create-submission {
+	position: absolute;
+	left: 20px;
+	bottom: 20px;
+	height: 40px;
+	width: 120px;
+	background-color: rgba(255, 164, 0, 1);
+	color: rgba(255, 255, 255, 1);
+	border: none;
+	border-radius: 16px;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+
+
+
+
+
+
