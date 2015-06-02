@@ -37,7 +37,7 @@ Lineplot.prototype = {
 
 			// Scale Axes
 			LP.x 			= d3.time.scale().range([0, LP.groupWidth]);
-			LP.y 			= d3.scale.linear().range([0, LP.groupHeight]);
+			LP.y 			= d3.scale.linear().range([LP.groupHeight, 0]);
 
 			LP.xAxis 		= d3.svg.axis().scale(LP.x)
 								.orient("bottom").ticks(6);

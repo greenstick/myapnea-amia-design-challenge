@@ -92,7 +92,10 @@ Color Palette
 /*
 General
 */
-
+#page-wrapper {
+	width: 1436px;
+	margin: 0 auto;
+}
 #interactive-wrapper {
 	/* Does not work on older browsers */
 	all: default;
@@ -242,9 +245,13 @@ Visualization Module
 #interactive-modules .module.visualization .graph {
 	position: absolute;
 	top: 20px;
-	right: 20px;
-	width: 560px;
+	left: 296px;
+	width: 692px;
 	height: 424px;
+}
+#interactive-modules .module.visualization .graph svg {
+	position: absolute;
+	left: 20px
 }
 #interactive-modules .module.visualization .graph .axis path, #interactive-modules .module.visualization .graph .axis line {
 	fill: none;
@@ -258,7 +265,58 @@ Visualization Module
 #interactive-modules .module.visualization .graph .circle {
 	fill: rgba(27, 37, 75, 1);
 }
-
+#interactive-modules .module.visualization .graph .y-label {
+	position: absolute;
+	width: 354px;
+	height: 20px;
+	left: -168px;
+	top: 176px;
+	text-align: center;
+	-webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+#interactive-modules .module.visualization .graph .x-label {
+	position: absolute;
+	bottom: 8px;
+	left: 60px;
+	width: 628px;
+	height: 20px;
+	text-align: center;
+}
+#interactive-modules .module.visualization .filters {
+	position: absolute;
+	width: 276px;
+	height: 464px;
+}
+#interactive-modules .module.visualization .filters select.input-field {
+	border: none;
+	width: 236px;
+	padding: 5px 35px 5px 20px;
+	margin: 20px 20px 40px 20px;
+	font-size: 16px;
+	height: 34px;
+	color: rgba(255, 255, 255, 1);
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	pointer: cursor;
+	background-image: url("../img/dropdown.svg") 96% / 15% no-repeat;
+}
+#interactive-modules .module.visualization .filters select.input-field:nth-child(1) {
+	background: rgba(27, 37, 75, 1);
+}
+#interactive-modules .module.visualization .filters select.input-field:nth-child(2) {
+	background: rgba(27, 37, 75, 1);
+}
+#interactive-modules .module.visualization .filters select.input-field:nth-child(3) {
+	background: rgba(255, 164, 0, 1);
+}
+#interactive-modules .module.visualization .filters select.input-field:nth-child(4) {
+	background: rgba(89, 153, 222, 1);
+}
 /* Visualization Module - UI: Flip Switch */
 
 .flipswitch {

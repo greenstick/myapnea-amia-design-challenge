@@ -125,7 +125,7 @@ File: interactive.js
 							var responseSet = I.activeData.responses[i], x, y1, y2, userData = {};
 							for (var j = 0; j < responseSet.length; j++) {
 								var response = responseSet[j];
-								if (response.key === I.selectedTime()) 		userData["x"] 		= response.value;
+								if (response.key === I.selectedTime()) 		userData["x"] 		= Number(new Date(response.value).getTime());
 								if (response.key === I.selectedFilterA()) 	userData["y1"] 		= response.value;
 								if (response.key === I.selectedFilterB()) 	userData["y2"] 		= response.value;
 								if (response.key === "datetime") 			userData["date"] 	= response.value;
@@ -133,7 +133,7 @@ File: interactive.js
 							}
 						}
 						for (var i = 0; i < data.length; i++) {
-							rangeX.push(data[i].x);
+							rangeX.push(x);
 							rangeY.push(data[i].y1, data[i].y2);
 							rangeDate.push(data[i].date);
 						}
@@ -148,7 +148,7 @@ File: interactive.js
 						console.log(data);
 						return I.graph;
 					},
-					socialData: function () {
+					socialData: function () {4
 						var data = [];
 						I.activeData = I.socialData;
 						for (var i = 0; i < I.activeData.length; i++) {
@@ -310,6 +310,10 @@ var config = {
 		{
 			key: "socialData", 
 			name: "Our Data"
+		},
+		{
+			key: "surveyData", 
+			name: "Survey Data"
 		}
 	],
 	timeFilters 	: [
@@ -393,12 +397,12 @@ var config = {
 	graphConfig 	: {
 		parent 			: ".module.visualization",
 		target 			: ".graph",
-		width 			: 560,
-		height 			: 424,
+		width 			: 676,
+		height 			: 384,
 		margin 			: {
-			top 			: 40,
-			right 			: 40,
-			bottom 			: 40,
+			top 			: 8,
+			right 			: 8,
+			bottom 			: 20,
 			left 			: 40
 		},
 		data 			: [],
