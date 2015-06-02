@@ -357,7 +357,7 @@ Input Module
 }
 #interactive-modules .module.inputs form .form-field .explanation {
 	position: relative;
-	width: 505px;
+	width: 428px;
 	height: 22px;
 	margin: 20px 0 8px 0;
 	color: rgba(27, 37, 75, 1);
@@ -366,6 +366,22 @@ Input Module
 	width: 248px;
 	height: 28px;
 	padding: 0 12px;
+}
+#interactive-modules .module.inputs form .form-field .input-field.slider {
+	cursor: pointer;
+	float: left;
+	margin-top: 8px;
+}
+#interactive-modules .module.inputs form .form-field .slider-value {
+position: relative;
+  float: left;
+  height: 24px;
+  width: 40px;
+  margin-top: 5px;
+  text-align: center;
+  font-size: 24px;
+  color: rgba(27, 37, 75, 1);
+  padding: 8px 0 0 0;
 }
 #interactive-modules .module.inputs form #create-submission {
 	position: absolute;

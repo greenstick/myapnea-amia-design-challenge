@@ -178,16 +178,16 @@ File: index.html
                                         <div class="flipswitch-switch"></div>
                                     </label>
                                 </div> -->
-                                <select class="dropdown dataSource" data-bind="foreach: dataSources, event:{change: setData.bind($data, event) }">
+                                <select class="dropdown dataSource input-field" data-bind="foreach: dataSources, event:{change: setData.bind($data, event) }">
                                     <option data-bind="value: $data.key, text: $data.name">
                                 </select>
-                                <select class="dropdown timeFilter" data-bind="foreach: timeFilters, event:{change: setTime.bind($data, event) }">
+                                <select class="dropdown timeFilter input-field" data-bind="foreach: timeFilters, event:{change: setTime.bind($data, event) }">
                                     <option data-bind="value: $data.key, text: $data.name">
                                 </select>
-                                <select class="dropdown dataFilterA" data-bind="foreach: dataFiltersA, event:{change: setFilterA.bind($data, event) }">
+                                <select class="dropdown dataFilterA input-field" data-bind="foreach: dataFiltersA, event:{change: setFilterA.bind($data, event) }">
                                     <option data-bind="value: $data.key, text: $data.name">
                                 </select>
-                                <select class="dropdown dataFilterB" data-bind="foreach: dataFiltersB, event:{change: setFilterB.bind($data, event) }">
+                                <select class="dropdown dataFilterB input-field" data-bind="foreach: dataFiltersB, event:{change: setFilterB.bind($data, event) }">
                                     <option data-bind="value: $data.key, text: $data.name">
                                 </select>
     							<div class="graph"></div>
@@ -205,47 +205,49 @@ File: index.html
                                         </div>
                                         <input id="weight-input" type="text" class="input-field" placeholder="Weight (lbs)" />
                                     </div>
-                                    <div class="form-field">
+                                    <div id="cpap-input" class="form-field">
                                         <div class="explanation">
                                             If you have a CPAP, for how many hours did you use it last night?
                                         </div>
-                                        <input id="cpap-input" type="text" class="input-field" placeholder="CPAP Hours per Night" />
+                                        <input type="text" class="input-field" placeholder="CPAP Hours per Night" />
                                     </div>
-                                    <div class="form-field">
+                                    <div id="sbp-input" class="form-field">
                                         <div class="explanation">
                                             What is your systolic blood pressure today (the higher number)?
                                         </div>
-                                        <input id="sbp-input" type="text" class="input-field" placeholder="Systolic Blood Pressure (mm/Hg)" />
+                                        <input type="text" class="input-field" placeholder="Systolic Blood Pressure (mm/Hg)" />
                                     </div>
-                                    <div class="form-field">
+                                    <div id="dbp-input" class="form-field">
                                         <div class="explanation">
-                                            What is your diastolic blood pressur today (the lower number)?
+                                            What is your diastolic blood pressure today (the lower number)?
                                         </div>
-                                        <input id="dbp-input" type="text" class="input-field" placeholder="Diastolic Blood Pressure (mm/Hg)" />
+                                        <input type="text" class="input-field" placeholder="Diastolic Blood Pressure (mm/Hg)" />
                                     </div>
-                                    <div class="form-field">
+                                    <div id="heartrate-input" class="form-field">
                                         <div class="explanation">
                                             What is your resting heart rate today?
                                         </div>
-                                        <input id="heartrate-input" type="text" class="input-field" placeholder="Heart Rate (BPM)" />
+                                        <input type="text" class="input-field" placeholder="Heart Rate (BPM)" />
                                     </div>
-                                    <div class="form-field">
-                                        <div class="explanation">
-                                            How sleepy are you feeling today?
-                                        </div>
-                                        <input id="sleepiness-input" type="text" class="input-field" placeholder="Daytime Sleepiness" />
-                                    </div>
-                                    <div class="form-field">
-                                        <div class="explanation">
-                                            How would you rate the quality of your sleep last night?
-                                        </div>
-                                        <input id="sleepquality-input" type="text" class="input-field" placeholder="Sleep Quality" />
-                                    </div>
-                                    <div class="form-field">
+                                    <div id="arousalcount-input" class="form-field">
                                         <div class="explanation">
                                             How many night time arousals did you experience last night?
                                         </div>
-                                        <input id="arousalcount-input" type="text" class="input-field" placeholder="Night Time Arousals" />
+                                        <input type="text" class="input-field" placeholder="Night Time Arousals" />
+                                    </div>
+                                    <div  id="sleepiness-input"class="form-field">
+                                        <div class="explanation">
+                                            How sleepy are you feeling today (1 = very poor, 5 average, 10 = excellent)?
+                                        </div>
+                                        <input type="range" min="1" max="10" value="5" step="1" class="input-field slider" placeholder="Daytime Sleepiness" onchange="interactive.showValue(this)"/>
+                                        <div class="slider-value">5</div>
+                                    </div>
+                                    <div id="sleepquality-input" class="form-field">
+                                        <div class="explanation">
+                                            How would you rate the quality of your sleep last night (1 = very poor, 5 = average, 10 = excellent)?
+                                        </div>
+                                        <input type="range" min="1" max="10" value="5" step="1" class="input-field slider" placeholder="Sleep Quality" onchange="interactive.showValue(this)"/>
+                                        <div class="slider-value">5</div>
                                     </div>
                                      <input id="create-submission" type="submit" value="Submit">
                                 </form>

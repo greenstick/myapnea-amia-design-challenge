@@ -292,6 +292,10 @@ File: interactive.js
 		hoverBadge: function (data) {
 			var I = this;
 			I.hoveredBadge(data);
+		},
+		showValue: function (data) {
+			var parent = $(data).offsetParent()[0].id
+			$('#' + parent + ' .slider-value').html(data.value);
 		}
 
 	};
