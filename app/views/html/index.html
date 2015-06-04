@@ -265,7 +265,7 @@ File: index.html
                                 </div>
                                 <div class="body">
                                     <div class="stars" data-bind="foreach: badges">
-                                        <div class="star" data-bind="event: {mouseover: function () { return $parent.hoverBadge($data)}}, css: {achieved: achieved === true, gold: level === 'gold', silver: level === 'silver', bronze: level === 'bronze'}">
+                                        <div class="star" data-bind="event: {mouseover: function (data, event) { return $parent.hoverBadge($data, event)}}, css: {achieved: achieved === true, gold: level === 'gold', silver: level === 'silver', bronze: level === 'bronze'}">
                                             <svg version="1.1" width="160" height="152">
                                                 <path  d="M 80.000 120.000 L 127.023 144.721 L 118.042 92.361 L 156.085 55.279 L 103.511 47.639 L 80.000 0.000 L 56.489 47.639 L 3.915 55.279 L 41.958 92.361 L 32.977 144.721 L 80.000 120.000" 
                                                     stroke-width="1">

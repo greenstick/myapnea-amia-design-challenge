@@ -289,11 +289,11 @@ File: interactive.js
 
 		},
 
-		hoverBadge: function (data) {
+		hoverBadge: function (data, event) {
 			var I = this;
-			I.hoveredBadge(data);
+			I.hoveredBadge(data, event);
 		},
-		showValue: function (data) {
+		showValue: function (data, event) {
 			var parent = $(data).offsetParent()[0].id
 			$('#' + parent + ' .slider-value').html(data.value);
 		}
