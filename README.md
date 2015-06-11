@@ -1,5 +1,6 @@
 # **Documentation version 1.0**
 
+*This documentation was written for team members involved in this submission for the 2015 AMIA Student Design Challenge, it is in no way a documentation reflective of the structure, organization, and logic within the source hosted on this repository*
 ---
 
 ## **Foreword**
