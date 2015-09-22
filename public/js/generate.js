@@ -141,7 +141,7 @@ generateUserData - Output Schema
 			{
 				key: "date",
 				name: "Date",
-				value: "5 / 18 /2015"
+				value: "5 / 18 / 2015"
 			},
 			{
 				key: "datetime",

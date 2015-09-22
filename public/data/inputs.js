@@ -7,7 +7,7 @@ window.inputschemas = {
 				"key": "Date",
 				"value": "Mon May 18 2015 15:41:47 GMT-0700 (PDT)"
 			},
-			"heightIn": {72,
+			"heightIn": 72,
 			"weightLbs": 180,
 			"cpapHrs": 4,
 			"bloodPressure": "140~120",

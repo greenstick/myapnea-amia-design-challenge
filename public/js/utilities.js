@@ -1,6 +1,6 @@
 // Instantiation Function
 var Utilities = function (config) {
-	this.init(config);
+	return typeof config === 'object' ? this.init(config) : this.init({});
 };
 
 // Utilities Prototype

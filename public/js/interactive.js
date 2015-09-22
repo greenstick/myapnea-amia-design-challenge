@@ -24,35 +24,23 @@ File: interactive.js
 
 	// Instantiation Function
 	var Interactive = function (config) {
-		this.init(config);
+		return typeof config === 'object' ? this.init(config) : undefined;
 	};
 
 	// Prototype
 	Interactive.prototype = {
 
-		/*
-		Core Routines
-		*/
+	/*
+	Core Routines
+	*/
 
 		//Initialize Interactive
 		init: function (config) {
 			var I = this;
-				// General Config Vars
-				I.parent 			= config.parent						|| 'body',
-				I.element 			= config.element 					|| '#interactive-wrapper',
-				I.navigation		= config.navigation 				|| '#interactive-navigation',
-				I.loader			= config.loader						|| '#interactive-loader',
-				I.moduleParent 		= config.moduleParent 				|| '#interactive-modules',
-				I.moduleElement 	= config.moduleElement 				|| '.module',
-				I.activeState 		= config.activeState 				|| 'default',
-				I.loggedIn 			= config.loggedIn 					|| false,
-				I.graphConfig 		= config.graphConfig,
+				// Crudely Attache Required Data
 				I.surveySchema 		= window.surveySchema,
 				I.badgeSchema 		= window.badgeSchema,
-				I.dials 			= {},
-				I.graph,
-				I.activeData,
-				// View Model Vars
+				// View Model Variables - Required
 				I.dataSources 		= ko.observable(config.dataSources),
 				I.timeFilters 		= ko.observable(config.timeFilters),
 				I.dataFiltersA 		= ko.observable(config.dataFiltersA),
@@ -63,29 +51,33 @@ File: interactive.js
 				I.selectedFilterB 	= ko.observable(config.dataFiltersB[0].key),
 				I.badges 			= ko.observableArray(I.badgeSchema),
 				I.hoveredBadge 		= ko.observable(I.badgeSchema[0])
+				// General Config Vars - Optional
+				I.parent 			= typeof config.parent 			=== 'string' ? config.parent 		: 'body',
+				I.element 			= typeof config.element 	 	=== 'string' ? config.element	 	: '#interactive-wrapper',
+				I.navigation		= typeof config.navigation 		=== 'string' ? config.navigation	: '#interactive-navigation',
+				I.loader			= typeof config.loader			=== 'string' ? config.loader		: '#interactive-loader',
+				I.moduleParent 		= typeof config.moduleParent 	=== 'string' ? config.moduleParent	: '#interactive-modules',
+				I.moduleElement 	= typeof config.moduleElement 	=== 'string' ? config.moduleElement	: '.module',
+				I.activeState 		= typeof config.activeState 	=== 'string' ? config.activeState	: 'default',
+				I.loggedIn 			= typeof config.loggedIn 		=== 'boolean'? config.loggedIn		: false,
+				I.graphConfig 		= typeof config.graphConfig 	=== 'object' ? config.graphConfig 	: undefined,
+				I.graph,
+				I.activeData,
 				// Bind Child Prototypes
-				I.utils 			= new Utilities({}),
+				I.utils 			= new Utilities(),
 				I.gen 				= new Generate({}),
 				// Generate Data
 				I.surveyData 		= I.gen.generateSurveyData(I.surveySchema, 20);
 				I.userData 			= I.gen.generateUserData(20);
 				I.socialData 		= I.gen.generateSocialData(20, 20);
-				// console.log(I.surveyData);
-				// console.log(I.userData);
-				// console.log(I.socialData);
-				console.log(I.badges());
+
+				console.log(I.surveyData);
 			return I;
 		},
-		
-		/*
-		User Interface Methods
-		*/
 
-
-
-		/*
-		Bindings
-		*/
+	/*
+	Bindings
+	*/
 
 		setData: function (event, data) {
 			var I = this;
@@ -111,9 +103,9 @@ File: interactive.js
 			I.updatePlotY(event.target.value, true);
 		},
 
-		/*
-		Graph Methods
-		*/
+	/*
+	Graph Methods
+	*/
 
 		genLinePlot: function () {
 			var I = this,
@@ -145,7 +137,6 @@ File: interactive.js
 						I.graphConfig["yMax"] = Math.max.apply(null, rangeY);
 						I.graphConfig["yMin"] = Math.min.apply(null, rangeY);
 						I.graph = new Lineplot(I.graphConfig, data);
-						console.log(data);
 						return I.graph;
 					},
 					socialData: function () {4
