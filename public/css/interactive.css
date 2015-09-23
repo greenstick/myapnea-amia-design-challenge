@@ -181,9 +181,10 @@ Gamification Module
 }
 #interactive-modules .module.gamification .tooltip .tt-header.achieved.gold {
 	color: rgba(255, 164, 0, 1);
+
 }
 #interactive-modules .module.gamification .tooltip .tt-header.achieved.silver {
-	color: rgba(192, 192, 192, 1);
+	color: rgba(128, 128, 128, 1);
 }
 #interactive-modules .module.gamification .tooltip .tt-header.achieved.bronze {
 	color: rgba(140, 120, 83, 1);
@@ -228,12 +229,12 @@ Gamification Module
 	stroke: rgba(255, 164, 0, 1);
 }
 #interactive-modules .module.gamification .stars .star.silver svg path {
-	fill: rgba(192, 192, 192, 0.1);
-	stroke: rgba(192, 192, 192, 1);
+	fill: rgba(128, 128, 128, 0.1);
+	stroke: rgba(128, 128, 128, 1);
 }
 #interactive-modules .module.gamification .stars .star.achieved.silver svg path {
-	fill: rgba(192, 192, 192, 1);
-	stroke: rgba(192, 192, 192, 1);
+	fill: rgba(128, 128, 128, 1);
+	stroke: rgba(128, 128, 128, 1);
 }
 #interactive-modules .module.gamification .stars .star.bronze svg path {
 	fill: rgba(140, 120, 83, 0.1);
