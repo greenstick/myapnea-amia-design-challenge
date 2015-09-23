@@ -1,12 +1,11 @@
 /*
 Project: AMIA Student Design Challenge
 Team Institution: Oregon Health & Science University
+Author: Cordier, B.
 Submission Team: Choi, A., Cordier, B., Das, P., Li, J.
 Client: MyApnea.org
 File: interactive.js
 */
-
-// (function () {
 
 	/*
 	Interactive Prototype
@@ -24,7 +23,7 @@ File: interactive.js
 
 	// Instantiation Function
 	var Interactive = function (config) {
-		this.init(config);
+		return this.init(config);
 	};
 
 	// Prototype
@@ -38,19 +37,14 @@ File: interactive.js
 		init: function (config) {
 			var I = this;
 				// General Config Vars
-				I.parent 			= config.parent						|| 'body',
-				I.element 			= config.element 					|| '#interactive-wrapper',
-				I.navigation		= config.navigation 				|| '#interactive-navigation',
-				I.loader			= config.loader						|| '#interactive-loader',
-				I.moduleParent 		= config.moduleParent 				|| '#interactive-modules',
-				I.moduleElement 	= config.moduleElement 				|| '.module',
-				I.activeState 		= config.activeState 				|| 'default',
-				I.loggedIn 			= config.loggedIn 					|| false,
-				I.graphConfig 		= config.graphConfig,
+				I.parent 			= typeof config.parent 			=== 'string' ? config.parent 		: 'body',
+				I.element 			= typeof config.element 		=== 'string' ? config.element 		: '#interactive-wrapper',
+				I.moduleParent 		= typeof config.moduleParent 	=== 'string' ? config.moduleParent	: '#interactive-modules',
+				I.moduleElement 	= typeof config.moduleElement 	=== 'string' ? config.moduleElement : '.module',
+				I.graph 			= typeof config.graph 			=== 'object' ? config.graph 		: undefined,
+				// Import Data
 				I.surveySchema 		= window.surveySchema,
 				I.badgeSchema 		= window.badgeSchema,
-				I.dials 			= {},
-				I.graph,
 				I.activeData,
 				// View Model Vars
 				I.dataSources 		= ko.observable(config.dataSources),
@@ -64,235 +58,227 @@ File: interactive.js
 				I.badges 			= ko.observableArray(I.badgeSchema),
 				I.hoveredBadge 		= ko.observable(I.badgeSchema[0])
 				// Bind Child Prototypes
-				I.utils 			= new Utilities({}),
 				I.gen 				= new Generate({}),
 				// Generate Data
-				I.surveyData 		= I.gen.generateSurveyData(I.surveySchema, 20);
-				I.userData 			= I.gen.generateUserData(20);
-				I.socialData 		= I.gen.generateSocialData(20, 20);
-				// console.log(I.surveyData);
-				// console.log(I.userData);
-				// console.log(I.socialData);
-				console.log(I.badges());
+				I.userData 			= I.gen.generateUserData(30, 1),
+				I.socialData 		= I.gen.generateSocialData(30, 30, 1),
+				I.chartDataA 		= [I.userData[0], I.userData[1], I.userData[2], I.userData[3], I.userData[4], I.userData[5], I.userData[6]],
+				I.chartDataB 		= [I.userData[0], I.userData[7], I.userData[8], I.userData[9]],
+				I.chartA 			= c3.generate({
+					bindto: I.graph.targetA,
+				    data: {
+				        xs: {
+				            weight 		: 'datetime',
+				            bmi 		: 'datetime',
+				            cpaphrs 	: 'datetime',
+				            heartrate 	: 'datetime',
+				            sbp 		: 'datetime',
+				            dbp 		: 'datetime'
+				        },
+				        columns: I.chartDataA,
+				        type: 'timeseries',
+				        types: {
+				            weight 		: 'line',
+				            bmi 		: 'line',
+				            cpaphrs 	: 'bar',
+				            heartrate 	: 'line',
+				            sbp 		: 'line',
+				            dbp 		: 'line'
+				        },
+				    },
+				    bar: {
+					  width: 20
+					},
+				    axis: {
+				        x: {
+				        	type: 'timeseries',
+				            tick: {
+				                fit: true,
+				                format: '%m/%d/%Y',
+				            	count: 6
+				            }
+				        },
+				        y: {
+				            tick: {
+				            	fit: true
+				            }
+				        }
+				    },
+				    tooltip: {
+				    	format: {
+				    		title: function (date) {return date.toString().substring(0, 15)},
+				    		name: function (name) {
+				    			var formats = {
+				    				weight: function () {
+				    					return "Weight";
+				    				},
+				    				bmi: function () {
+				    					return "Body Mass Index";
+				    				},
+				    				cpaphrs: function () {
+				    					return "CPAP Usage";
+				    				},
+				    				heartrate: function () {
+				    					return "Heart Rate";
+				    				},
+				    				spb: function () {
+				    					return "Systolic Blood Pressure";
+				    				},
+				    				dbp: function () {
+				    					return "Diastolic Blood Pressure";
+				    				}
+				    			}
+				    			return formats[name]();
+				    		},
+				            value: function (value, ratio, id) {
+				            	var formats = {
+				            		weight: function (value) {
+				            			return value + " Lbs";
+				            		},
+				            		bmi: function (value) {
+				            			return value
+				            		},
+				            		cpaphrs: function (value) {
+				            			return value + " Hrs";
+				            		},
+				            		heartrate: function (value) {
+				            			return value + "BPM"
+				            		},
+				            		sbp: function (value) {
+				            			return value + " mm/Hg";
+				            		},
+				            		dbp: function (value) {
+				            			return value + " mm/Hg";
+				            		}
+				            	}
+				            	return formats[id](value);
+				            }
+				    	}
+				    },
+				    legend: {
+				    	position: 'right'
+				    },
+				    zoom: {
+				    	enabled: true
+				    }
+				});
+			I.chartB 			= c3.generate({
+					bindto: I.graph.targetB,
+				    data: {
+				        xs: {
+				            sleepiness 	: 'datetime',
+				            sleepquality: 'datetime',
+				            arousalcount: 'datetime'
+				        },
+				        columns: I.chartDataB,
+				        type: 'timeseries',
+				        types: {
+				            sleepiness 	: 'line',
+				            sleepquality: 'line',
+				            arousalcount: 'line'
+				        },
+				    },
+				    axis: {
+				        x: {
+				        	type: 'timeseries',
+				            tick: {
+				                fit: true,
+				                format: '%m/%d/%Y',
+				            	count: 6
+				            }
+				        },
+				        y: {
+				            tick: {
+				            	fit: true
+				            }
+				        }
+				    },
+				    tooltip: {
+				    	format: {
+				    		title: function (date) {return date.toString().substring(0, 15)},
+				    		name: function (name) {
+				    			var formats = {
+				    				sleepiness: function () {
+				    					return "Daytime Sleepiness (1 - 10)";
+				    				},
+				    				sleepquality: function () {
+				    					return "Sleep Quality (1 - 10)";
+				    				},
+				    				arousalcount: function () {
+				    					return "Nighttime Arousals";
+				    				}
+				    			}
+				    			return formats[name]();
+				    		}
+				    	}
+				    },
+				    legend: {
+				    	position: 'right'
+				    },
+				    zoom: {
+				    	enabled: true
+				    }
+				});
+			I.chartA.hide(['weight', 'bmi', 'heartrate', 'sbp', 'dbp']);
+			I.chartB.hide(['sleepiness', 'arousalcount']);
+			console.log(I.userData);
 			return I;
 		},
 		
 		/*
-		User Interface Methods
+		Graph Methods
 		*/
 
+		updateChart: function (key) {
+			var I = this;
 
+			return I;
+		},
 
 		/*
-		Bindings
+		Data Visualization Selection Bindings
 		*/
 
 		setData: function (event, data) {
 			var I = this;
 			I.selectedData(event.target.value);
-			I.updatePlotData(event.target.value);
+			I.updateChart();
+			return I;
 		},
 
 		setTime: function (event, data) {
 			var I = this;
-			I.selectedTime(event.target.value);
-			I.updatePlotX(event.target.value);
+			I.selectedTime();
+			I.updateChart();
+			return I;
 		},
 
 		setFilterA: function (event, data) {
 			var I = this;
 			I.selectedFilterA(event.target.value);
-			I.updatePlotY(event.target.value, false);
+			I.updateChart();
+			return I;
 		},
 
 		setFilterB: function (event, data) {
 			var I = this;
 			I.selectedFilterB(event.target.value);
-			I.updatePlotY(event.target.value, true);
+			I.updateChart();
+			return I;
 		},
 
 		/*
-		Graph Methods
+		Interface Methods
 		*/
 
-		genLinePlot: function () {
-			var I = this,
-				type = {
-					userData: function () {
-						I.activeData = I.userData;
-						var data = [], rangeX = [], rangeY = [], rangeDate = [];
-						for (var i = 0; i < I.activeData.responses.length; i++) {
-							var responseSet = I.activeData.responses[i], x, y1, y2, userData = {};
-							for (var j = 0; j < responseSet.length; j++) {
-								var response = responseSet[j];
-								if (response.key === I.selectedTime()) 		userData["x"] 		= Number(new Date(response.value).getTime());
-								if (response.key === I.selectedFilterA()) 	userData["y1"] 		= response.value;
-								if (response.key === I.selectedFilterB()) 	userData["y2"] 		= response.value;
-								if (response.key === "datetime") 			userData["date"] 	= response.value;
-								data.push(userData);
-							}
-						}
-						for (var i = 0; i < data.length; i++) {
-							rangeX.push(x);
-							rangeY.push(data[i].y1, data[i].y2);
-							rangeDate.push(data[i].date);
-						}
-						data = data.sort(function (a, b) {
-							return new Date(a.date) - new Date (b.date);
-						});
-						I.graphConfig["xMax"] = Math.max.apply(null, rangeX);
-						I.graphConfig["xMin"] = Math.min.apply(null, rangeX);
-						I.graphConfig["yMax"] = Math.max.apply(null, rangeY);
-						I.graphConfig["yMin"] = Math.min.apply(null, rangeY);
-						I.graph = new Lineplot(I.graphConfig, data);
-						console.log(data);
-						return I.graph;
-					},
-					socialData: function () {4
-						var data = [];
-						I.activeData = I.socialData;
-						for (var i = 0; i < I.activeData.length; i++) {
-							var user = I.activeData[i], userData = {};
-							for (var j = 0; j < user.responses.length; j++) {
-								var responseSet = user.responses[j], x, y1, y2;
-								for (var k = 0; k < responseSet.length; k++) {
-									var response = responseSet[k];
-									if (response.key === I.selectedTime()) 		userData["x"] 		= response.value;
-									if (response.key === I.selectedFilterA()) 	userData["y1"] 		= response.value;
-									if (response.key === I.selectedFilterB()) 	userData["y2"] 		= response.value;
-									if (response.key === "datetime") 			userData["date"] 	= response.value;
-									data.push(userData);
-								}
-							}
-						}
-						data = data.sort(function (a, b) {
-							return new Date(a.date) - new Date (b.date);
-						});
-						console.log("meow")
-						// for (var i = 0; i < data.length; i++) {
-						// 	console.log(data[i]);
-						// }
-						I.graph = new Lineplot(I.graphConfig, data);
-						return I.graph;
-					},
-					surveyData: function () {
-						var data = [];
-						I.activeData = I.surveyData;
-						for (var i = 0; i < I.activeData.length; i++) {
-							var x 	= I.surveyData[i].responses[I.selectedTime()],
-								y1 	= I.surveyData[i].responses[I.selectedFilterA()],
-								y2 	= I.surveyData[i].responses[I.selectedFilterB()],
-								arr = [x, y1, y2];
-								data.push(arr);
-						}
-						I.graph = new Lineplot(I.graphConfig, data);
-						return I.graph;
-					}
-				};
-			try {
-				type[I.selectedData()]();
-			} catch (e) {
-				console.log("Error Rendering Plot!");
-				console.debug(e);
-				return I.graph;
-			}
-		},
-
-		updatePlotData: function (key) {
-			var I = this,
-				type = {
-					userData: function () {
-						var data = [], rangeX = [], rangeY = [], rangeDate = [];
-						for (var i = 0; i < I.userData.responses.length; i++) {
-							var responseSet = I.userData.responses[i], x, y1, y2, userData = {};
-							for (var j = 0; j < responseSet.length; j++) {
-								var response = responseSet[j];
-								if (response.key === I.selectedTime()) 		userData["x"] 		= response.value;
-								if (response.key === I.selectedFilterA()) 	userData["y1"] 		= response.value;
-								if (response.key === I.selectedFilterB()) 	userData["y2"] 		= response.value;
-								if (response.key === "datetime") 			userData["date"] 	= response.value;
-								data.push(userData);
-							}
-						}
-						for (var i = 0; i < data.length; i++) {
-							rangeX.push(data[i].x);
-							rangeY.push(data[i].y1, data[i].y2);
-							rangeDate.push(data[i].date);
-						}
-						data = data.sort(function (a, b) {
-							return new Date(a.date) - new Date (b.date);
-						});
-						I.graphConfig["xMax"] = Math.max.apply(null, rangeX);
-						I.graphConfig["xMin"] = Math.min.apply(null, rangeX);
-						I.graphConfig["yMax"] = Math.max.apply(null, rangeY);
-						I.graphConfig["yMin"] = Math.min.apply(null, rangeY);
-						I.graph = I.graph.update(data);
-						return I.graph;
-					},
-					socialData: function () {
-						var data = [];
-						console.log(I.socialData);
-						for (var i = 0; i < I.socialData.length; i++) {
-							var user = I.socialData[i], userData = {};
-							for (var j = 0; j < user.responses.length; j++) {
-								var responseSet = user.responses[j], x, y1, y2;
-								for (var k = 0; k < responseSet.length; k++) {
-									var response = responseSet[k];
-									if (response.key === I.selectedTime()) 		userData["x"] 		= response.value;
-									if (response.key === I.selectedFilterA()) 	userData["y1"] 		= response.value;
-									if (response.key === I.selectedFilterB()) 	userData["y2"] 		= response.value;
-									if (response.key === "datetime") 			userData["date"] 	= response.value;
-									data.push(userData);
-								}
-							}
-						}
-						data = data.sort(function (a, b) {
-							return new Date(a.date) - new Date (b.date);
-						});
-						console.log("meow")
-						// for (var i = 0; i < data.length; i++) {
-						// 	console.log(data[i]);
-						// }
-						I.graph = I.graph.update(data);
-						return I.graph;
-					},
-					surveyData: function () {
-						var data = [];
-						for (var i = 0; i < I.surveyData.length; i++) {
-							var x 	= I.surveyData[i].responses[I.selectedTime()],
-								y1 	= I.surveyData[i].responses[I.selectedFilterA()],
-								y2 	= I.surveyData[i].responses[I.selectedFilterB()],
-								arr = [x, y1, y2];
-								data.push(arr);
-						}
-						I.graph = I.graph.update(data);
-						return I.graph;
-					}
-				};
-			// try {
-				type[I.selectedData()]();
-			// } catch (e) {
-				// console.log("Error Rendering Plot!");
-				// console.log("Data: " + I.selectedData());
-				// console.log("Time: " + I.selectedTime());
-				// console.log("FilterA: " + I.selectedFilterA());
-				// console.log("FilterB: " + I.selectedFilterB())
-				// return I.graph;
-			// }
-		},
-
-		updatePlotX: function (key) {
-
-		},
-
-		updatePlotY: function (key, filterA) {
-
-		},
-
+		// Gamification Module: Show Information About Badge Being Hovered
 		hoverBadge: function (data, event) {
 			var I = this;
 			I.hoveredBadge(data, event);
+			return I;
 		},
+
+		// Input Module: Show Selected Slider Value
 		showValue: function (data, event) {
 			var parent = $(data).offsetParent()[0].id
 			$('#' + parent + ' .slider-value').html(data.value);
@@ -300,6 +286,7 @@ File: interactive.js
 
 	};
 
+// Interactive Config Arguments
 var config = {
 	parent 			: 'body',
 	dataSources 	: [
@@ -326,22 +313,14 @@ var config = {
 			name: "CPAP Hours per Night"
 		}
 	],
-	dataFiltersA 	: [
-		{
-			key: "bmi", 
-			name: "Body Mass Index (BMI)"
-		}, 
-		{
-			key: "sleepQuality", 
-			name: "Sleep Quality"
-		}, 
-		{
-			key: "height", 
-			name: "Height (in)"
-		}, 
+	dataFiltersA 	: [ 
 		{
 			key: "weight", 
 			name: "Weight (lbs)"
+		}, 
+		{
+			key: "bmi", 
+			name: "Body Mass Index (BMI)"
 		}, 
 		{
 			key: "bloodPressure", 
@@ -350,11 +329,7 @@ var config = {
 		{
 			key: "heartRate", 
 			name: "Heart Rate (BPM)"
-		}, 
-		{
-			key: "sleepiness", 
-			name: "Daytime Sleepiness"
-		}, 
+		},
 		{
 			key: "arousalCount", 
 			name: "Night Time Arousals"
@@ -362,43 +337,19 @@ var config = {
 	],
 	dataFiltersB 	: [
 		{
-			key: "weight", 
-			name: "Weight (lbs)"
-		}, 
-		{
 			key: "sleepQuality", 
 			name: "Sleep Quality"
-		}, 
-		{
-			key: "height", 
-			name: "Height (in)"
-		}, 
-		{
-			key: "bmi", 
-			name: "Body Mass Index (BMI)"
-		}, 
-		{
-			key: "bloodPressure", 
-			name: "Blood Pressure (mm/Hg)"
-		}, 
-		{
-			key: "heartRate", 
-			name: "Heart Rate (BPM)"
-		}, 
+		},
 		{
 			key: "sleepiness", 
 			name: "Daytime Sleepiness"
-		}, 
-		{
-			key: "arousalCount", 
-			name: "Night Time Arousals"
 		}
 	],
-	graphConfig 	: {
-		parent 			: ".module.visualization",
-		target 			: ".graph",
-		width 			: 676,
-		height 			: 384,
+	graph 			: {
+		targetA 		: ".graph-a",
+		targetB 		: ".graph-b",
+		width 			: 980,
+		height 			: 216,
 		margin 			: {
 			top 			: 8,
 			right 			: 8,
@@ -415,8 +366,6 @@ var config = {
 	}
 };
 
+// Instatiate & Bind ViewModel
 var interactive = new Interactive(config);
-	interactive.genLinePlot();
-	ko.applyBindings(interactive, document.getElementById("interactive-wrapper"));
-
-// }(jQuery, ko, d3))
+ko.applyBindings(interactive, document.getElementById("interactive-wrapper"));

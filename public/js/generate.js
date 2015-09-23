@@ -199,17 +199,28 @@ generateUserData - Output Schema
 
 */
 
-	generateUserData: function (count) {
-		var generator = this,
-			output 	= {
-				userID 		: generator.generateUUID(),
-				cpap 		: true,
-				responses 	: []
-			},
-		 	date 	= new Date(),
-		 	seed 	= Math.random();
-		for (var i = 0; i < count; i++) {
-			var rawDate 		= new Date(Math.floor(date.getTime() - (36500000000 * Math.random()))),
+	generateUserData: function (count, months) {
+		var generator 	= this,
+		 	date 		= new Date(),
+		 	seed 		= Math.random(),
+		 	dates 		= ["date"],
+		 	datetimes 	= ["datetime"],
+		 	heights 	= ["height"],
+		 	weights 	= ["weight"],
+		 	bmis 		= ["bmi"],
+		 	cpaphrs 	= ["cpaphrs"],
+		 	dbps 		= ["dbp"],
+		 	sbps 		= ["sbp"],
+		 	bps 		= ["bp"],
+		 	heartrates 	= ["heartrate"],
+		 	sleepinesses= ["sleepiness"],
+		 	sleepquals 	= ["sleepquality"],
+		 	arouscounts = ["arousalcount"],
+		 	i 			= 0,
+		 	seen 		= [],
+		 	output;
+		while (i < count) {
+			var rawDate 		= new Date(Math.floor(date.getTime() - ((months / 12) * 36500000000 * Math.random()))),
 				newDate 		= rawDate.getFullYear() + "/" + (rawDate.getMonth() + 1) + "/" + rawDate.getDate(),
 				bmi 			= Number(((0.5 + (Math.random() * 0.1) + (seed * 0.4)) * 42).toFixed(2)),
 				height 			= Math.floor((0.6 + (seed * 0.4)) * 90), 
@@ -220,73 +231,42 @@ generateUserData - Output Schema
 				dbpRandom 		= 0.75 + bpRandom - (Math.random() * 0.05) + (seed * 0.2),
 				sbp 			= Math.floor(sbpRandom * 120),
 				dbp 			= Math.floor(dbpRandom * 120),
-				bloodPressure 	= sbp + "~" + dbp,
+				bloodPressure 	= {sbp: sbp, dbp: dbp},
 				heartRate 		= Math.floor((0.6 + (Math.random() * 0.1) + (seed * 0.3)) * 120),
 				sleepiness 		= Math.floor(((Math.random() * 0.8) + (seed * 0.2)) * 10),
 				sleepQuality	= Math.floor(((Math.random() * 0.8) + (seed * 0.2)) * 10),
 				arousalCount 	= Math.floor(((Math.random() * 0.8) + (seed * 0.2)) * 6),
-				response 		= [
-					{
-						key: "date",
-						name: "Date",
-						value: newDate
-					},
-					{
-						key: "datetime",
-						name: "Time",
-						value: rawDate
-					},
-					{
-						key: "height",
-						name: "Height (in)",
-						value: height
-					},
-					{
-						key: "weight",
-						name: "Weight (lbs)",
-						value: weight
-					},
-					{
-						key: "bmi",
-						name: "Body Mass Index (BMI)",
-						value: bmi
-					},
-					{
-						key: "cpap",
-						name: "CPAP Hours per Night",
-						value: cpapHrs
-					},
-					{
-						key: "bloodPressure",
-						name: "Blood Pressure (mm/Hg)",
-						value: bloodPressure
-					},
-					{
-						key: "heartRate",
-						name: "Heart Rate (BPM)",
-						value: heartRate
-					},
-					{
-						key: "sleepiness",
-						name: "Daytime Sleepiness",
-						value: sleepiness
-					},
-					{
-						key: "sleepQuality",
-						name: "Sleep Quality",
-						value: sleepQuality
-					},
-					{
-						key: "arousalCount",
-						name: "Night Time Arousals",
-						value: arousalCount
-					}
-				];
-			output.responses.push(response);
+				datetime 		= rawDate.toISOString().split('T')[0];
+			if (seen.indexOf(datetime) === -1) {
+				dates.push(newDate);
+				datetimes.push(datetime);
+				weights.push(weight);
+				heights.push(height);
+				bmis.push(bmi);
+				cpaphrs.push(cpapHrs);
+				dbps.push(dbp);
+				sbps.push(sbp);
+				bps.push(bloodPressure);
+				heartrates.push(heartRate);
+				sleepinesses.push(sleepiness);
+				sleepquals.push(sleepQuality);
+				arouscounts.push(arousalCount);
+				seen.push(datetime);
+				i++
+			}
 		}
-		output.responses = output.responses.sort(function (a, b) {
-			return new Date (a.datetime) - new Date (b.datetime);
-		});
+		output = [
+			datetimes,
+			weights,
+			bmis,
+			cpaphrs,
+			dbps,
+			sbps,
+			heartrates,
+			sleepinesses,
+			sleepquals,
+			arouscounts
+		];
 		return output;
 	},
 
@@ -362,12 +342,12 @@ generateSocialData - Output Schema
 
 */
 
-	generateSocialData: function (userCount, maxRecordCount) {
+	generateSocialData: function (userCount, maxRecordCount, months) {
 		var G 			= this, 
 			socialData 	= [];
 		for (var i = 0; i < userCount; i++) {
 			var count 	= Math.floor(maxRecordCount * Math.random()),
-				user 	= G.generateUserData(count);
+				user 	= G.generateUserData(count, months);
 			socialData.push(user);
 		}
 		return socialData;

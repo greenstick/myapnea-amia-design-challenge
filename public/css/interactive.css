@@ -1,6 +1,7 @@
 /*
 Project: AMIA Student Design Challenge
 Team Institution: Oregon Health & Science University
+Author: Cordier, B.
 Submission Team: Choi, A., Cordier, B., Das, P., Li, J.
 Client: MyApnea.org
 File: interactive.css
@@ -194,7 +195,7 @@ Gamification Module
 #interactive-modules .module.gamification .stars .star {
 	position: relative;
 	float: left;
-	margin: 32px 46px 12px;
+	margin: 28px 46px;
     height: 172px;
     width: 156px;
 }
@@ -242,30 +243,36 @@ Gamification Module
 Visualization Module
 */
 
-#interactive-modules .module.visualization .graph {
+#interactive-modules .module.visualization .graphs {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 1010px;
+	height: 464px;
+}
+#interactive-modules .module.visualization .graphs .graph {
 	position: absolute;
 	top: 20px;
-	left: 296px;
-	width: 692px;
-	height: 424px;
+	left: 10px;
+	width: 980px;
+	height: 216px;
 }
-#interactive-modules .module.visualization .graph svg {
+#interactive-modules .module.visualization .graphs .graph svg {
 	position: absolute;
-	left: 20px
 }
-#interactive-modules .module.visualization .graph .axis path, #interactive-modules .module.visualization .graph .axis line {
+#interactive-modules .module.visualization .graphs .graph .axis path, #interactive-modules .module.visualization .graphs .graph .axis line {
 	fill: none;
 	stroke: rgba(27, 37, 75, 1);
 	shape-rendering: crispEdges;
 }
-#interactive-modules .module.visualization .graph .axis text {
+#interactive-modules .module.visualization .graphs .graph .axis text {
 	font-family: 'helvetica', 'sans-serif';
 	font-size: 11px;
 }
-#interactive-modules .module.visualization .graph .circle {
+#interactive-modules .module.visualization .graphs .graph .circle {
 	fill: rgba(27, 37, 75, 1);
 }
-#interactive-modules .module.visualization .graph .y-label {
+#interactive-modules .module.visualization .graphs .graph .y-label {
 	position: absolute;
 	width: 354px;
 	height: 20px;
@@ -278,7 +285,7 @@ Visualization Module
     -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
 }
-#interactive-modules .module.visualization .graph .x-label {
+#interactive-modules .module.visualization .graphs .graph .x-label {
 	position: absolute;
 	bottom: 8px;
 	left: 60px;
@@ -302,7 +309,7 @@ Visualization Module
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	pointer: cursor;
+	cursor: pointer;
 	background-image: url("../img/dropdown.svg") 96% / 15% no-repeat;
 }
 #interactive-modules .module.visualization .filters select.input-field:nth-child(1) {
@@ -421,25 +428,27 @@ Input Module
 	color: rgba(27, 37, 75, 1);
 }
 #interactive-modules .module.inputs form .form-field .input-field {
-	width: 248px;
+	width: 378px;
 	height: 28px;
 	padding: 0 12px;
 }
 #interactive-modules .module.inputs form .form-field .input-field.slider {
-	cursor: pointer;
 	float: left;
+	width: 370px;
+	padding: 0px;
 	margin-top: 8px;
+	cursor: pointer;
 }
 #interactive-modules .module.inputs form .form-field .slider-value {
-position: relative;
-  float: left;
-  height: 24px;
-  width: 40px;
-  margin-top: 5px;
-  text-align: center;
-  font-size: 24px;
-  color: rgba(27, 37, 75, 1);
-  padding: 8px 0 0 0;
+	position: relative;
+	float: left;
+	height: 24px;
+	width: 40px;
+	margin-top: 5px;
+	text-align: center;
+	font-size: 24px;
+	color: rgba(27, 37, 75, 1);
+	padding: 8px 0 0 0;
 }
 #interactive-modules .module.inputs form #create-submission {
 	position: absolute;

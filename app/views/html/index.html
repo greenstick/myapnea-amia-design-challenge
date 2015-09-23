@@ -1,6 +1,7 @@
 <!--
 Project: AMIA Student Design Challenge
 Team Institution: Oregon Health & Science University
+Author: Cordier, B.
 Submission Team: Choi, A., Cordier, B., Das, P., Li, J.
 Client: MyApnea.org
 File: index.html
@@ -13,7 +14,7 @@ File: index.html
     <meta content="width=device-width" id="interactiveViewport" name="viewport">
     <!-- CSS files -->
     <link href="css/myapnea.css" rel="stylesheet" type="text/css">
-    <link href="css/nvd3.css" rel="stylesheet" type="text/css">
+    <link href="css/c3.min.css" rel="stylesheet" type="text/css">
     <link href="css/interactive.css" rel="stylesheet" type="text/css">
     <title>MyApnea Dashboard Prototype - AMIA Design Challenge Submission</title>
 </head>
@@ -179,7 +180,7 @@ File: index.html
                                             <div class="flipswitch-switch"></div>
                                         </label>
                                     </div> -->
-                                    <div class="filters">
+<!--                                     <div class="filters">
                                         <select class="dropdown dataSource input-field" data-bind="foreach: dataSources, event:{change: setData.bind($data, event) }">
                                             <option data-bind="value: $data.key, text: $data.name">
                                         </select>
@@ -192,10 +193,16 @@ File: index.html
                                         <select class="dropdown dataFilterB input-field" data-bind="foreach: dataFiltersB, event:{change: setFilterB.bind($data, event) }">
                                             <option data-bind="value: $data.key, text: $data.name">
                                         </select>
-                                    </div>
-        							<div class="graph">
-                                        <div class="y-label">Body Mass Index (BMI) / Weight (lbs)</div>
-                                        <div class="x-label">Date</div>
+                                    </div> -->
+                                    <div class="graphs">
+                                        <div class="graph graph-a">
+                                            <div class="y-label">Body Mass Index (BMI) / Weight (lbs)</div>
+                                            <div class="x-label">Date</div>
+                                        </div>
+                                        <div class="graph graph-b">
+                                            <div class="y-label">Body Mass Index (BMI) / Weight (lbs)</div>
+                                            <div class="x-label">Date</div>
+                                        </div>
                                     </div>
                                 </div>
     						</div>
@@ -601,26 +608,12 @@ File: index.html
             <div id="DIV_365"></div>
         </div>
 <!-- Below we include the JavaScript files we'll need -->
-        <!-- jQuery library. See documentation: http://api.jquery.com -->
-        <script src="js/lib/jquery.min.js" type="application/javascript"></script> 
-        <!-- Knockout.js library. See documentation: http://knockoutjs.com/documentation/introduction.html -->
-        <script src="js/lib/ko.min.js" type="application/javascript"></script> 
-        <!-- D3 library. See documentation: https://github.com/mbostock/d3/wiki -->
-        <script src="js/lib/d3.min.js" type="application/javascript"></script>
-        <!-- NVD3 Library - Reusable Charts & Things-->
-        <script src="js/lib/nvd3.min.js" type="application/javascript"></script>
-        <!-- Utilities -->
-        <script src="js/utilities.js" type="application/javascript"></script>
-        <!-- Script Attaches Survey Schemas to Window Object -->
-        <script src="data/surveys.js" type="application/javascript"></script>
-        <!-- Script Attaches Survey Schemas to Window Object -->
-        <script src="data/badges.js" type="application/javascript"></script>
+        <!-- Include Libraries -->
+        <script src="js/lib/all-libs.min.js" type="application/javascript"></script> 
+        <!-- Script Attaches Data Schemas to Window Object, Pretty Nasty TBH -->
+        <script src="data/schemas.js" type="application/javascript"></script>
         <!-- Include Data Generation Module -->
         <script src="js/generate.js" type="application/javascript"></script>
-        <!-- Include D3 Scatterplot -->
-        <script src="js/scatterplot.js" type="application/javascript"></script>
-        <!-- Include D3 Lineplot -->
-        <script src="js/lineplot.js" type="application/javascript"></script>
         <!-- And finally, our own interactive.js file -->
         <script src="js/interactive.js" type="application/javascript"></script>
 </body>
