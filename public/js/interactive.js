@@ -120,7 +120,7 @@ File: interactive.js
 				    				heartrate: function () {
 				    					return "Heart Rate";
 				    				},
-				    				spb: function () {
+				    				sbp: function () {
 				    					return "Systolic Blood Pressure";
 				    				},
 				    				dbp: function () {
