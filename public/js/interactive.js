@@ -222,48 +222,6 @@ File: interactive.js
 			I.chartB.hide(['sleepiness', 'arousalcount']);
 			return I;
 		},
-		
-		/*
-		Graph Methods
-		*/
-
-		updateChart: function (key) {
-			var I = this;
-
-			return I;
-		},
-
-		/*
-		Data Visualization Selection Bindings
-		*/
-
-		setData: function (event, data) {
-			var I = this;
-			I.selectedData(event.target.value);
-			I.updateChart();
-			return I;
-		},
-
-		setTime: function (event, data) {
-			var I = this;
-			I.selectedTime();
-			I.updateChart();
-			return I;
-		},
-
-		setFilterA: function (event, data) {
-			var I = this;
-			I.selectedFilterA(event.target.value);
-			I.updateChart();
-			return I;
-		},
-
-		setFilterB: function (event, data) {
-			var I = this;
-			I.selectedFilterB(event.target.value);
-			I.updateChart();
-			return I;
-		},
 
 		/*
 		Interface Methods

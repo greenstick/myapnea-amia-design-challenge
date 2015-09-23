@@ -227,16 +227,21 @@ generateUserData - Output Schema
 				weight 			= Math.floor(bmi * ((height * height) / 703)),
 				cpapHrs 		= Math.floor(((0.8 * (seed * 0.5)) + (Math.random() * 0.6)) * 8),
 				bpRandom 		= Math.random() * 0.25,
-				sbpRandom 		= 0.75 + bpRandom + (Math.random() * 0.05) + (seed * 0.2),
-				dbpRandom 		= 0.75 + bpRandom - (Math.random() * 0.05) + (seed * 0.2),
-				sbp 			= Math.floor(sbpRandom * 120),
-				dbp 			= Math.floor(dbpRandom * 100),
+				sbpRandom 		= 0.50 + bpRandom + (Math.random() * 0.05) + (seed * 0.2) + ((bmi / 42) * 0.25),
+				dbpRandom 		= 0.50 + bpRandom - (Math.random() * 0.05) + (seed * 0.2) + ((bmi / 42) * 0.25),
+				sbp 			= Math.floor(sbpRandom * 140),
+				dbp 			= Math.floor(dbpRandom * 110),
 				bloodPressure 	= {sbp: sbp, dbp: dbp},
-				heartRate 		= Math.floor((0.6 + (Math.random() * 0.1) + (seed * 0.3)) * 120),
-				sleepiness 		= Math.floor(((Math.random() * 0.8) + (seed * 0.2)) * 10),
-				sleepQuality	= Math.floor(((Math.random() * 0.8) + (seed * 0.2)) * 10),
-				arousalCount 	= Math.floor(((Math.random() * 0.8) + (seed * 0.2)) * 6),
+				heartRate 		= Math.floor(((0.4 + (Math.random() * 0.1) + (seed * 0.3)) * 128) + ((bmi / 42) * 0.2)),
+				sleepiness 		= Math.floor(((Math.random() * 0.3) + (((8 / cpapHrs) / 8) * 0.6) + (seed * 0.1)) * 10),
+				sleepQuality	= Math.floor(((Math.random() * 0.2) + ((cpapHrs / 8) * 0.7) + (seed * 0.1)) * 10),
+				arousalCount 	= Math.floor(((Math.random() * 0.1) + (((8 / cpapHrs) / 8) * 0.8) + (seed * 0.1)) * 12),
 				datetime 		= rawDate.toISOString().split('T')[0];
+				sleepiness 		= isFinite(sleepiness) 		? sleepiness 	: 10;
+				arousalCount 	= isFinite(arousalCount) 	? arousalCount 	: 12;
+				sbp 			= isFinite(sbp) 			? sbp 			: 140;
+				dbp 			= isFinite(dbp) 			? dbp 			: 110;
+				heartRate 		= isFinite(heartRate) 		? heartRate 	: 128;
 			if (seen.indexOf(datetime) === -1) {
 				dates.push(newDate);
 				datetimes.push(datetime);
@@ -255,6 +260,7 @@ generateUserData - Output Schema
 				i++
 			}
 		}
+		console.log(sleepinesses);
 		output = [
 			datetimes,
 			weights,
