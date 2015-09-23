@@ -60,8 +60,7 @@ File: interactive.js
 				// Bind Child Prototypes
 				I.gen 				= new Generate({}),
 				// Generate Data
-				I.userData 			= I.gen.generateUserData(30, 1),
-				I.socialData 		= I.gen.generateSocialData(30, 30, 1),
+				I.userData 			= I.gen.generateUserData(60, 2),
 				I.chartDataA 		= [I.userData[0], I.userData[1], I.userData[2], I.userData[3], I.userData[4], I.userData[5], I.userData[6]],
 				I.chartDataB 		= [I.userData[0], I.userData[7], I.userData[8], I.userData[9]],
 				I.chartA 			= c3.generate({
@@ -87,7 +86,7 @@ File: interactive.js
 				        },
 				    },
 				    bar: {
-					  width: 20
+					  width: 12
 					},
 				    axis: {
 				        x: {
@@ -95,12 +94,12 @@ File: interactive.js
 				            tick: {
 				                fit: true,
 				                format: '%m/%d/%Y',
-				            	count: 6
+				            	count: 8
 				            }
 				        },
 				        y: {
 				            tick: {
-				            	fit: true
+				            	fit: false
 				            }
 				        }
 				    },
@@ -184,7 +183,7 @@ File: interactive.js
 				            tick: {
 				                fit: true,
 				                format: '%m/%d/%Y',
-				            	count: 6
+				            	count: 8
 				            }
 				        },
 				        y: {
@@ -221,7 +220,6 @@ File: interactive.js
 				});
 			I.chartA.hide(['weight', 'bmi', 'heartrate', 'sbp', 'dbp']);
 			I.chartB.hide(['sleepiness', 'arousalcount']);
-			console.log(I.userData);
 			return I;
 		},
 		
