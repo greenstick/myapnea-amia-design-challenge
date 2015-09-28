@@ -141,7 +141,7 @@ File: interactive.js
 				            			return value + " Hrs";
 				            		},
 				            		heartrate: function (value) {
-				            			return value + "BPM"
+				            			return value + " BPM"
 				            		},
 				            		sbp: function (value) {
 				            			return value + " mm/Hg";
@@ -198,10 +198,10 @@ File: interactive.js
 				    		name: function (name) {
 				    			var formats = {
 				    				sleepiness: function () {
-				    					return "Daytime Sleepiness (1 - 10)";
+				    					return "Daytime Sleepiness (1 – 10)";
 				    				},
 				    				sleepquality: function () {
-				    					return "Sleep Quality (1 - 10)";
+				    					return "Sleep Quality (1 – 10)";
 				    				},
 				    				arousalcount: function () {
 				    					return "Nighttime Arousals";

@@ -235,7 +235,7 @@ generateUserData - Output Schema
 				heartRate 		= Math.floor(((0.4 + (Math.random() * 0.1) + (seed * 0.3)) * 128) + ((bmi / 42) * 0.2)),
 				sleepiness 		= Math.floor(((Math.random() * 0.3) + (((8 / cpapHrs) / 8) * 0.6) + (seed * 0.1)) * 10),
 				sleepQuality	= Math.floor(((Math.random() * 0.2) + ((cpapHrs / 8) * 0.7) + (seed * 0.1)) * 10),
-				arousalCount 	= Math.floor(((Math.random() * 0.1) + (((8 / cpapHrs) / 8) * 0.8) + (seed * 0.1)) * 12),
+				arousalCount 	= Math.floor(((Math.random() * 0.2) + (((8 / cpapHrs) / 8) * 0.6) + (seed * 0.2)) * 180),
 				datetime 		= rawDate.toISOString().split('T')[0];
 				sleepiness 		= isFinite(sleepiness) 		? sleepiness 	: 10;
 				arousalCount 	= isFinite(arousalCount) 	? arousalCount 	: 12;
@@ -260,7 +260,6 @@ generateUserData - Output Schema
 				i++
 			}
 		}
-		console.log(sleepinesses);
 		output = [
 			datetimes,
 			weights,
