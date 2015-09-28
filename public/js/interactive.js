@@ -99,7 +99,7 @@ File: interactive.js
 				        },
 				        y: {
 				            tick: {
-				            	fit: false
+				            	fit: true
 				            }
 				        }
 				    },
