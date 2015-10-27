@@ -236,11 +236,11 @@ generateUserData - Output Schema
 				sleepiness 		= Math.floor(((Math.random() * 0.2) + (((8 / cpapHrs) / 8) * 0.7) + (seed * 0.1)) * 11),
 				sleepQuality	= 10 - Math.floor(((Math.random() * 0.2) + (((8 / cpapHrs) / 8) * 0.6) + (seed * 0.1)) * 10),
 				arousalCount 	= Math.floor(((Math.random() * 0.1) + (((8 / cpapHrs) / 8) * 0.8) + (seed * 0.1)) * 80),
-				datetime 		= rawDate.toISOString().split('T')[0];
-				sleepiness 		= isFinite(sleepiness) 		? sleepiness 	: 10;
-				arousalCount 	= isFinite(arousalCount) 	? arousalCount 	: 12;
-				sbp 			= isFinite(sbp) 			? sbp 			: 140;
-				dbp 			= isFinite(dbp) 			? dbp 			: 110;
+				datetime 		= rawDate.toISOString().split('T')[0],
+				sleepiness 		= isFinite(sleepiness) 		? sleepiness 	: 10,
+				arousalCount 	= isFinite(arousalCount) 	? arousalCount 	: 12,
+				sbp 			= isFinite(sbp) 			? sbp 			: 140,
+				dbp 			= isFinite(dbp) 			? dbp 			: 110,
 				heartRate 		= isFinite(heartRate) 		? heartRate 	: 128;
 			if (seen.indexOf(datetime) === -1) {
 				dates.push(newDate);
